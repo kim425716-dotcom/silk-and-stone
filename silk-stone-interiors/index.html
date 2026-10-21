@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILK &amp; STONE — Boutique Interior Design Studio | Nairobi, Kenya</title>
+    <meta name="description" content="SILK &amp; STONE is a boutique interior design studio based in Nairobi, Kenya. We craft timeless, bespoke interiors rooted in warmth, materiality, and the art of living well. Book a complimentary consultation today.">
+    <meta name="keywords" content="interior design, Nairobi, Kenya, luxury interiors, residential design, commercial design, boutique studio">
+    <meta name="author" content="SILK &amp; STONE">
+    <link rel="canonical" href="https://silkandstone.design">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SILK &amp; STONE — Interior Design Studio">
+    <meta property="og:description" content="Boutique interior design studio crafting timeless interiors rooted in warmth, materiality, and the art of living well.">
+    <meta property="og:image" content="hero-living.jpg">
+
+    <!-- Styles & Typography -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ─── Page-specific enhancements ─── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+        @media (max-width: 767px) {
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+        }
+        .stat-item {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid hsla(var(--primary-foreground) / 0.12);
+            text-align: center;
+        }
+        .stat-item:last-child { border-right: none; }
+        @media (max-width: 767px) {
+            .stat-item:nth-child(2) { border-right: none; }
+            .stat-item:nth-child(3), .stat-item:nth-child(4) { border-top: 1px solid hsla(var(--primary-foreground) / 0.12); }
+        }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 300;
+            color: hsl(var(--accent));
+            line-height: 1;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: hsla(var(--primary-foreground) / 0.6);
+        }
+        /* Scrolling marquee */
+        .marquee-wrapper {
+            overflow: hidden;
+            background: hsl(var(--accent));
+            padding: 1rem 0;
+            white-space: nowrap;
+        }
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 28s linear infinite;
+        }
+        .marquee-track span {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: hsl(var(--accent-foreground));
+            padding: 0 2.5rem;
+        }
+        .marquee-track span::before {
+            content: "·";
+            margin-right: 2.5rem;
+            opacity: 0.5;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        /* Services preview grid */
+        .services-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5px;
+            background: hsl(var(--border));
+        }
+        @media (max-width: 767px) {
+            .services-preview-grid { grid-template-columns: 1fr; }
+        }
+        .service-preview-card {
+            background: hsl(var(--background));
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.35s ease;
+        }
+        .service-preview-card:hover {
+            background: hsl(var(--secondary));
+        }
+        .service-preview-card .spc-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: hsla(var(--accent) / 0.15);
+            line-height: 1;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            transition: color 0.35s ease;
+        }
+        .service-preview-card:hover .spc-number {
+            color: hsla(var(--accent) / 0.3);
+        }
+        /* Testimonial pull-quote */
+        .testimonial-pull {
+            background: hsl(var(--secondary));
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .testimonial-pull blockquote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-style: italic;
+            font-weight: 400;
+            color: hsl(var(--foreground));
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.4;
+        }
+        .testimonial-pull cite {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: hsl(var(--muted-foreground));
+            font-style: normal;
+        }
+        /* Press/Awards strip */
+        .press-strip {
+            padding: 3.5rem 2rem;
+            background: hsl(var(--card));
+            border-top: 1px solid hsl(var(--border));
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        .press-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3.5rem;
+            flex-wrap: wrap;
+        }
+        .press-logo-item {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            color: hsl(var(--foreground));
+            text-transform: uppercase;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .press-logo-item:hover {
+            opacity: 1;
+            color: hsl(var(--accent));
+            transform: translateY(-1px);
+        }
+        /* Hero scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            right: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 20;
+        }
+        .scroll-indicator span {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: hsla(255,255%,100%,0.6);
+            writing-mode: vertical-rl;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: hsla(255,255%,100%,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            animation: scroll-down 2s ease infinite;
+        }
+        @keyframes scroll-down {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+        /* Philosophy offset image */
+        .philosophy-offset {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+        @media (max-width: 767px) {
+            .philosophy-offset { grid-template-columns: 1fr; }
+        }
+        .philosophy-img-col {
+            position: relative;
+            overflow: hidden;
+        }
+        .philosophy-img-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 400px;
+        }
+        .philosophy-text-col {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        @media (max-width: 1023px) {
+            .philosophy-text-col { padding: 3rem 2rem; }
+        }
+        /* Project hover overlay */
+        .portfolio-item .item-overlay {
+            position: absolute;
+            inset: 0;
+            background: hsla(var(--primary) / 0.6);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .portfolio-item:hover .item-overlay { opacity: 1; }
+        .portfolio-item .item-overlay-text {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 0.75rem 1.5rem;
+        }
+        /* Materials palette strip */
+        .materials-strip {
+            display: flex;
+            gap: 0;
+            height: 12px;
+        }
+        .mat-swatch { flex: 1; }
+        /* Award badge */
+        .award-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            padding: 0.6rem 1.2rem;
+            border-radius: 2px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: hsl(var(--muted-foreground));
+        }
+        .award-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: hsl(var(--accent));
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased selection:bg-accent selection:text-white">
+
+    <!-- Fixed Header / Navigation -->
+    <header class="site-header fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+            <a href="index.html" class="brand-group">
+                <span class="brand font-display text-2xl font-semibold tracking-tight text-foreground">SILK &amp; STONE</span>
+                <span class="brand-subheading">DESIGN + BUILD</span>
+            </a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html"      class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300 active">Home</a>
+                <a href="about.html"      class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">About</a>
+                <a href="portfolio.html"  class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Portfolio</a>
+                <a href="services.html"   class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Services</a>
+                <a href="contact.html"    class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Contact</a>
+            </nav>
+            <!-- Mobile Hamburger -->
+            <button class="md:hidden text-foreground bg-transparent border-none cursor-pointer p-2" aria-label="Toggle menu" id="menu-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6"  x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-nav" class="md:hidden bg-background border-b border-border hidden animate-fade-in">
+            <div class="flex flex-col px-6 py-6 gap-6">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase active">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ═══════════ HERO ═══════════ -->
+        <section id="home" class="hero-section">
+            <div class="absolute inset-0">
+                <img src="hero-living.jpg" alt="Luxurious modern living room with warm neutral tones" class="w-full h-full object-cover" width="1920" height="1080">
+                <div class="absolute inset-0 bg-hero-overlay"></div>
+            </div>
+
+            <!-- Award badges top-right -->
+            <div style="position:absolute; top:7rem; right:3rem; display:flex; flex-direction:column; gap:0.6rem; z-index:20;" class="hidden md:flex">
+                <div class="award-badge" style="background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.75);">
+                    <span class="award-badge-dot"></span>
+                    Nairobi Design Award 2024
+                </div>
+                <div class="award-badge" style="background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.75);">
+                    <span class="award-badge-dot"></span>
+                    AD Top 100 Interiors 2023
+                </div>
+            </div>
+
+            <div class="hero-inner relative z-10 w-full">
+                <div class="max-w-7xl mx-auto px-6 md:px-12">
+                    <div class="max-w-3xl animate-fade-up">
+                        <!-- Eyebrow -->
+                        <p style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:1.5rem;">Boutique Interior Design Studio · Est. 2022</p>
+                        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-medium text-primary-foreground leading-[1.08] mb-6 tracking-tight">
+                            Spaces that speak <br>
+                            <em class="font-normal italic">to the soul</em>
+                        </h1>
+                        <p class="font-body text-base md:text-lg text-primary-foreground-80 mb-10 max-w-md font-light leading-relaxed" style="color:rgba(255,255,255,0.78);">
+                            We design timeless interiors rooted in warmth, materiality, and the art of living well — from Nairobi's finest residences to celebrated commercial spaces across East Africa.
+                        </p>
+                        <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+                            <a href="contact.html" class="btn-consultation group inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 font-body text-sm font-medium tracking-widest uppercase rounded-sm hover:opacity-90 transition-all duration-300 shadow-md">
+                                BOOK A CONSULTATION
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                            <a href="portfolio.html" style="font-family:var(--font-body); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.7); border-bottom:1px solid rgba(255,255,255,0.35); padding-bottom:2px; transition:color 0.3s, border-color 0.3s;" onmouseover="this.style.color='white';this.style.borderColor='white';" onmouseout="this.style.color='rgba(255,255,255,0.7)';this.style.borderColor='rgba(255,255,255,0.35)';">
+                                View Our Work
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator hidden md:flex">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ MARQUEE STRIP ═══════════ -->
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <span>Interior Design</span><span>Space Planning</span><span>Residential</span><span>Commercial</span><span>Custom Millwork</span><span>Material Curation</span><span>Renovation</span><span>Furniture Selection</span><span>Nairobi, Kenya</span>
+                <span>Interior Design</span><span>Space Planning</span><span>Residential</span><span>Commercial</span><span>Custom Millwork</span><span>Material Curation</span><span>Renovation</span><span>Furniture Selection</span><span>Nairobi, Kenya</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ STATS BAR ═══════════ -->
+        <div class="stats-bar">
+            <div class="stat-item reveal-on-scroll">
+                <span class="stat-number">25+</span>
+                <span class="stat-label">Projects Completed</span>
+            </div>
+            <div class="stat-item reveal-on-scroll">
+                <span class="stat-number">2022</span>
+                <span class="stat-label">Established</span>
+            </div>
+            <div class="stat-item reveal-on-scroll">
+                <span class="stat-number">8</span>
+                <span class="stat-label">Team Members</span>
+            </div>
+            <div class="stat-item reveal-on-scroll">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Countries Served</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ PHILOSOPHY (DARK OFFSET) ═══════════ -->
+        <section class="philosophy-offset">
+            <div class="philosophy-img-col">
+                <img src="portfolio-bedroom.jpg" alt="Elegantly designed bedroom by SILK &amp; STONE" loading="lazy">
+            </div>
+            <div class="philosophy-text-col">
+                <p class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.5);">Our Philosophy</p>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-8" style="color:hsl(var(--primary-foreground));">
+                    Where elegance meets <em class="font-normal italic">everyday life</em>
+                </h2>
+                <p class="font-body leading-relaxed mb-6" style="color:hsla(var(--primary-foreground)/0.72); font-size:1rem;">
+                    At SILK &amp; STONE, we believe that great design isn't about following trends — it's about creating spaces that feel inherently right. Every project begins with listening: understanding how you live, how you move through a room, what textures bring you comfort, what light makes you feel most yourself.
+                </p>
+                <p class="font-body leading-relaxed mb-10" style="color:hsla(var(--primary-foreground)/0.72); font-size:1rem;">
+                    We craft environments that are not just beautiful to behold, but deeply functional and emotionally resonant — spaces that amplify your daily experience and grow richer with time.
+                </p>
+                <!-- Three pillars inline -->
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; border-top:1px solid hsla(var(--primary-foreground)/0.15); padding-top:2rem;">
+                    <div>
+                        <h4 class="font-display" style="font-size:0.95rem; color:hsl(var(--accent)); margin-bottom:0.4rem;">Listen First</h4>
+                        <p class="font-body" style="font-size:0.78rem; color:hsla(var(--primary-foreground)/0.55); line-height:1.6;">Your story is the foundation of every design.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-display" style="font-size:0.95rem; color:hsl(var(--accent)); margin-bottom:0.4rem;">Material Truth</h4>
+                        <p class="font-body" style="font-size:0.78rem; color:hsla(var(--primary-foreground)/0.55); line-height:1.6;">We honour natural textures and organic beauty.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-display" style="font-size:0.95rem; color:hsl(var(--accent)); margin-bottom:0.4rem;">Timeless Craft</h4>
+                        <p class="font-body" style="font-size:0.78rem; color:hsla(var(--primary-foreground)/0.55); line-height:1.6;">Designed for the decades ahead, not the moment.</p>
+                    </div>
+                </div>
+                <div style="margin-top:2.5rem;">
+                    <a href="about.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase hover:opacity-70 transition-opacity" style="color:hsl(var(--accent));">
+                        Our Story &amp; Team
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ SERVICES PREVIEW ═══════════ -->
+        <section class="section-padding">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:3rem; flex-wrap:wrap; gap:1rem;">
+                    <div>
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">What We Do</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground">Comprehensive Design Services</h2>
+                    </div>
+                    <a href="services.html" class="hidden md:inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                        All Services <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="services-preview-grid">
+                <div class="service-preview-card reveal-on-scroll">
+                    <span class="spc-number">01</span>
+                    <div class="text-accent mb-5" style="color:hsl(var(--accent));">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m14.622 17.897-10.68-2.913"/><path d="M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z"/><path d="M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Full Interior Design</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Concept to completion — spatial planning, material selection, procurement, and professional installation management for residential and commercial projects.</p>
+                    <a href="services.html" class="font-body text-xs tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">Learn More →</a>
+                </div>
+                <div class="service-preview-card reveal-on-scroll">
+                    <span class="spc-number">02</span>
+                    <div class="text-accent mb-5" style="color:hsl(var(--accent));">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Space Planning</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Strategic spatial layouts that maximise flow, function, and natural light — translating architectural shells into intuitive, human-scaled living environments.</p>
+                    <a href="services.html" class="font-body text-xs tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">Learn More →</a>
+                </div>
+                <div class="service-preview-card reveal-on-scroll">
+                    <span class="spc-number">03</span>
+                    <div class="text-accent mb-5" style="color:hsl(var(--accent));">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Renovation &amp; Remodeling</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Thoughtful renovation that honours original character while introducing modern comfort, contemporary materiality, and enhanced spatial quality.</p>
+                    <a href="services.html" class="font-body text-xs tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">Learn More →</a>
+                </div>
+                <div class="service-preview-card reveal-on-scroll">
+                    <span class="spc-number">04</span>
+                    <div class="text-accent mb-5" style="color:hsl(var(--accent));">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"/><path d="M5 18v2"/><path d="M19 18v2"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Furniture &amp; Object Selection</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Curated sourcing from master artisan makers, international design studios, and local craftspeople — scaled in harmonious proportion for your home.</p>
+                    <a href="services.html" class="font-body text-xs tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">Learn More →</a>
+                </div>
+                <div class="service-preview-card reveal-on-scroll">
+                    <span class="spc-number">05</span>
+                    <div class="text-accent mb-5" style="color:hsl(var(--accent));">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Custom Millwork &amp; Joinery</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Bespoke cabinetry, built-in shelving, wardrobes, and signature furnishings designed and fabricated exclusively for your project by hand-selected craftspeople.</p>
+                    <a href="services.html" class="font-body text-xs tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">Learn More →</a>
+                </div>
+                <div class="service-preview-card reveal-on-scroll">
+                    <span class="spc-number">06</span>
+                    <div class="text-accent mb-5" style="color:hsl(var(--accent));">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Design Consultation</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Expert guidance for a single room, a full residence, or a boutique commercial build. Clarity, direction, and professional aesthetic counsel in focused sessions.</p>
+                    <a href="services.html" class="font-body text-xs tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">Learn More →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ SELECTED WORK ═══════════ -->
+        <section class="section-padding bg-secondary">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="flex items-end justify-between mb-12">
+                    <div>
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">Selected Work</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground">Recent Projects</h2>
+                    </div>
+                    <a href="portfolio.html" class="hidden md:inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                        View All
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="portfolio.html" class="group cursor-pointer portfolio-item reveal-on-scroll block" data-category="Residential">
+                        <div class="image-reveal mb-4 overflow-hidden rounded-sm" style="position:relative;">
+                            <img src="project-smoked-oak-wardrobe.jpg" alt="The Smoked Oak &amp; Calacatta Dressing Salon" class="w-full h-400 object-cover" loading="lazy">
+                            <div class="item-overlay"><span class="item-overlay-text">View Project</span></div>
+                        </div>
+                        <p class="category-tag font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential · Master Suite</p>
+                        <h3 class="font-display text-xl font-medium text-foreground group-hover:text-accent transition-colors">The Smoked Oak Dressing Salon</h3>
+                        <p class="font-body text-sm text-muted-foreground mt-1">Muthaiga, Nairobi · 2025</p>
+                    </a>
+                    <a href="portfolio.html" class="group cursor-pointer portfolio-item reveal-on-scroll block" data-category="Residential">
+                        <div class="image-reveal mb-4 overflow-hidden rounded-sm" style="position:relative;">
+                            <img src="project-sage-kitchen.jpg" alt="The Sage &amp; Calacatta Culinary Suite" class="w-full h-400 object-cover" loading="lazy">
+                            <div class="item-overlay"><span class="item-overlay-text">View Project</span></div>
+                        </div>
+                        <p class="category-tag font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential · Culinary Architecture</p>
+                        <h3 class="font-display text-xl font-medium text-foreground group-hover:text-accent transition-colors">The Sage &amp; Calacatta Kitchen</h3>
+                        <p class="font-body text-sm text-muted-foreground mt-1">Thindigua, Kiambu · 2025</p>
+                    </a>
+                    <a href="portfolio.html" class="group cursor-pointer portfolio-item reveal-on-scroll block" data-category="Residential">
+                        <div class="image-reveal mb-4 overflow-hidden rounded-sm" style="position:relative;">
+                            <img src="project-calacatta-powder-room.jpg" alt="The Calacatta &amp; Fluted Marble Powder Room" class="w-full h-400 object-cover" loading="lazy" style="object-position: center 25%;">
+                            <div class="item-overlay"><span class="item-overlay-text">View Project</span></div>
+                        </div>
+                        <p class="category-tag font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential · Primary Powder Suite</p>
+                        <h3 class="font-display text-xl font-medium text-foreground group-hover:text-accent transition-colors">Calacatta Marble Powder Room</h3>
+                        <p class="font-body text-sm text-muted-foreground mt-1">Runda, Nairobi · 2024</p>
+                    </a>
+                </div>
+
+                <div class="md:hidden mt-8 text-center">
+                    <a href="portfolio.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent">
+                        View All Projects
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FEATURED PULL QUOTE ═══════════ -->
+        <div class="testimonial-pull">
+            <blockquote>
+                "Great design is not about what you see — it's about what you feel the moment you walk through the door."
+            </blockquote>
+            <cite>— Simon Mwakodi, Architect &amp; Lead Designer</cite>
+        </div>
+
+        <!-- ═══════════ HOW WE WORK (PROCESS STRIP) ═══════════ -->
+        <section class="section-padding" style="background:hsl(var(--card));">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">How We Work</p>
+                <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-16">Our Design Process</h2>
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2rem;">
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">01</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Discovery</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">We meet, listen deeply, and immerse ourselves in understanding your vision, daily lifestyle, and spatial aspirations. A thorough brief is the foundation of everything.</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">02</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Concept</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">Mood boards, tactile material palettes, sketches, and spatial layouts take shape. We present a clear design direction for your feedback before we proceed.</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">03</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Development</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">Detailed technical drawings, 3D renderings, finish specifications, and complete procurement schedules are refined together to ensure total clarity before build.</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">04</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Execution</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">We manage every fine detail on-site — from artisan coordination and procurement to final installation and styling — with meticulous attention to craft.</p>
+                    </div>
+                </div>
+                <div style="margin-top:3.5rem; text-align:center;">
+                    <a href="services.html" class="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 font-body text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm shadow-md">
+                        Explore Full Services
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ TESTIMONIALS ═══════════ -->
+        <section id="testimonials" class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4 text-center">Client Words</p>
+            <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground text-center mb-16">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-center reveal-on-scroll" style="padding:0 1rem;">
+                    <div style="width:2.5rem; height:2px; background:hsl(var(--accent)); margin:0 auto 1.5rem;"></div>
+                    <p class="font-display text-lg italic text-foreground leading-relaxed mb-6">
+                        "SILK &amp; STONE transformed our apartment into something we never imagined. Every detail was considered, every material chosen with an almost poetic purpose."
+                    </p>
+                    <p class="font-body text-sm font-medium text-foreground">Sarah &amp; James Chen</p>
+                    <p class="font-body text-xs text-muted-foreground mt-1">Muthaiga Residence · 2024</p>
+                </div>
+                <div class="text-center reveal-on-scroll" style="padding:0 1rem;">
+                    <div style="width:2.5rem; height:2px; background:hsl(var(--accent)); margin:0 auto 1.5rem;"></div>
+                    <p class="font-display text-lg italic text-foreground leading-relaxed mb-6">
+                        "Working with their team felt completely effortless. They understood our vision instinctively and elevated it far beyond our own expectations."
+                    </p>
+                    <p class="font-body text-sm font-medium text-foreground">Michael Torres</p>
+                    <p class="font-body text-xs text-muted-foreground mt-1">Karen Townhouse · 2023</p>
+                </div>
+                <div class="text-center reveal-on-scroll" style="padding:0 1rem;">
+                    <div style="width:2.5rem; height:2px; background:hsl(var(--accent)); margin:0 auto 1.5rem;"></div>
+                    <p class="font-display text-lg italic text-foreground leading-relaxed mb-6">
+                        "The attention to detail is truly unmatched. Our office now reflects exactly who we are as a company — it inspires both our team and our clients every day."
+                    </p>
+                    <p class="font-body text-sm font-medium text-foreground">Elena Voss</p>
+                    <p class="font-body text-xs text-muted-foreground mt-1">Westlands Creative Studio · 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ PRESS / RECOGNITION ═══════════ -->
+        <div class="press-strip">
+            <p class="font-body text-xs tracking-widest uppercase text-muted-foreground text-center mb-6">As Seen In &amp; Recognised By</p>
+            <div class="press-logos">
+                <span class="press-logo-item">Architectural Digest</span>
+                <span class="press-logo-item">Elle Décor Africa</span>
+                <span class="press-logo-item">Design Indaba</span>
+                <span class="press-logo-item">Living Spaces KE</span>
+                <span class="press-logo-item">SBID Global</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ FULL-BLEED ATMOSPHERE IMAGE ═══════════ -->
+        <div class="image-reveal overflow-hidden relative" style="position: relative; max-height: 680px;">
+            <img src="project-travertine-villa.jpg" alt="Signature double-height travertine villa living salon by SILK &amp; STONE" class="w-full object-cover" style="height: 620px; object-position: center 50%; display: block;" loading="lazy">
+            <div style="position: absolute; bottom: 2rem; left: 2.5rem; background: rgba(18, 18, 17, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 0.75rem 1.4rem; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 2px;">
+                <p class="font-body text-xs tracking-widest uppercase text-white/90" style="margin: 0; letter-spacing: 0.15em;">Signature Commission · Double-Volume Travertine Residence, Karen</p>
+            </div>
+        </div>
+
+        <!-- ═══════════ CALL TO ACTION ═══════════ -->
+        <section class="section-padding bg-accent text-accent-foreground text-center">
+            <div style="max-width:40rem; margin:0 auto; padding:0 1.5rem;">
+                <p class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--accent-foreground)/0.6);">Begin Your Journey</p>
+                <h2 class="font-display text-3xl md:text-4xl font-medium mb-6">
+                    Ready to transform your space?
+                </h2>
+                <p class="font-body mb-10 text-base" style="color:hsla(var(--accent-foreground)/0.78); max-width:30rem; margin-left:auto; margin-right:auto; line-height:1.7;">
+                    Let's create something beautiful together. Schedule a complimentary 30-minute consultation to discuss your vision, timeline, and project scope.
+                </p>
+                <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                    <a href="contact.html" class="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-body text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm shadow-md">
+                        Book a Consultation
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="portfolio.html" style="font-family:var(--font-body); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:hsla(var(--accent-foreground)/0.7); border-bottom:1px solid hsla(var(--accent-foreground)/0.35); padding-bottom:2px; display:inline-flex; align-items:center; gap:0.5rem; margin:auto 0;">
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="bg-primary text-primary-foreground py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="brand-group">
+                        <span class="brand font-display text-2xl font-semibold tracking-tight text-primary-foreground">SILK &amp; STONE</span>
+                        <span class="brand-subheading-footer">DESIGN + BUILD</span>
+                    </a>
+                    <p class="font-body text-sm mt-6 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">
+                        Boutique interior design studio crafting timeless spaces rooted in warmth, materiality, and the art of living well.
+                    </p>
+                    <div style="margin-top:1.5rem; display:flex; gap:1rem;">
+                        <a href="https://wa.me/254769260012" style="color:hsla(var(--primary-foreground)/0.4); transition:color 0.3s;" onmouseover="this.style.color='hsl(var(--accent))'" onmouseout="this.style.color='hsla(var(--primary-foreground)/0.4)'" aria-label="WhatsApp">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                        </a>
+                        <a href="mailto:hello@silkstone.co.ke" style="color:hsla(var(--primary-foreground)/0.4); transition:color 0.3s;" onmouseover="this.style.color='hsl(var(--accent))'" onmouseout="this.style.color='hsla(var(--primary-foreground)/0.4)'" aria-label="Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </a>
+                        <a href="tel:+254769260012" style="color:hsla(var(--primary-foreground)/0.4); transition:color 0.3s;" onmouseover="this.style.color='hsl(var(--accent))'" onmouseout="this.style.color='hsla(var(--primary-foreground)/0.4)'" aria-label="Phone">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.77 9.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Explore</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="index.html"     class="hover:text-primary-foreground transition-colors">Home</a></li>
+                        <li><a href="about.html"     class="hover:text-primary-foreground transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-primary-foreground transition-colors">Portfolio</a></li>
+                        <li><a href="services.html"  class="hover:text-primary-foreground transition-colors">Services</a></li>
+                        <li><a href="contact.html"   class="hover:text-primary-foreground transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Services</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Full Interior Design</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Space Planning</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Renovation &amp; Remodeling</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Furniture Selection</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Custom Millwork</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Design Consultation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Newsletter</h4>
+                    <p class="font-body text-sm mb-4 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">
+                        Subscribe to receive our seasonal curation on architecture, materiality, and interiors.
+                    </p>
+                    <form id="newsletter-form" class="space-y-3">
+                        <input type="email" placeholder="Email Address" required class="w-full bg-primary-foreground-10 border-none px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground-40 focus:ring-1 focus:ring-accent outline-none transition-all rounded-sm" style="background:hsla(var(--primary-foreground)/0.08); color:hsl(var(--primary-foreground)); border:1px solid hsla(var(--primary-foreground)/0.15);">
+                        <button type="submit" class="w-full bg-accent text-accent-foreground px-6 py-3 font-body text-xs tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm">Subscribe</button>
+                    </form>
+                    <p class="font-body text-xs mt-3" style="color:hsla(var(--primary-foreground)/0.35);">No spam. Unsubscribe at any time.</p>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-primary-foreground-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] tracking-widest uppercase text-primary-foreground-40 font-body" style="border-color:hsla(var(--primary-foreground)/0.1); color:hsla(var(--primary-foreground)/0.35);">
+                <p>© 2026 SILK &amp; STONE Interior Design. All rights reserved.</p>
+                <div style="display:flex; align-items:center; gap:0.5rem; color:hsla(var(--primary-foreground)/0.3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Thindigua, Kiambu / Nairobi, Kenya
+                </div>
+                <div class="flex gap-8">
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Privacy Policy</a>
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/254769260012" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    </a>
+
+    <!-- Toast -->
+    <div id="toast-notice" class="toast-notice">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
+        <span class="toast-text"></span>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

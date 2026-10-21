@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — SILK &amp; STONE | Boutique Interior Design Studio, Nairobi</title>
+    <meta name="description" content="Learn about SILK &amp; STONE, our founding story, design philosophy, core pillars, and the talented team of designers and architects behind our boutique interior design studio.">
+    <meta name="author" content="SILK &amp; STONE">
+    <link rel="canonical" href="https://silkandstone.design/about">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Page Hero Banner */
+        .page-hero {
+            height: 55vh;
+            min-height: 380px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        .page-hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .page-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,22,19,0.55) 0%, rgba(26,22,19,0.15) 60%, transparent 100%);
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 10;
+            padding: 3rem;
+            max-width: 80rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: hsl(var(--border));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.375rem;
+            top: 0.35rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: hsl(var(--accent));
+            border: 2px solid hsl(var(--background));
+            box-shadow: 0 0 0 1px hsl(var(--accent));
+        }
+        .timeline-year {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: hsl(var(--accent));
+            margin-bottom: 0.5rem;
+        }
+        /* Team card */
+        .team-card {
+            border: 1px solid hsl(var(--border));
+            overflow: hidden;
+            border-radius: 2px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .team-card:hover {
+            border-color: hsl(var(--accent));
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+        .team-card-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.4s;
+        }
+        .team-card:hover .team-card-img {
+            filter: grayscale(0%);
+        }
+        .team-card-body {
+            padding: 2rem;
+        }
+        /* Values grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: hsl(var(--border));
+        }
+        @media (max-width: 767px) {
+            .values-grid { grid-template-columns: 1fr; }
+        }
+        .value-block {
+            background: hsl(var(--background));
+            padding: 3rem 2.5rem;
+        }
+        .value-block:hover {
+            background: hsl(var(--secondary));
+        }
+        /* Awards list */
+        .awards-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 767px) {
+            .awards-list { grid-template-columns: 1fr; }
+        }
+        .award-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        .award-row-year {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: hsl(var(--accent));
+            min-width: 3.5rem;
+        }
+        /* Studio values big letters */
+        .value-letter {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 300;
+            color: hsl(var(--accent));
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        /* Quote pull */
+        .founder-quote {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        /* Skills bars */
+        .skill-bar { margin-bottom: 1.5rem; }
+        .skill-label {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: hsl(var(--foreground));
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .skill-track {
+            height: 2px;
+            background: hsl(var(--border));
+            overflow: hidden;
+        }
+        .skill-fill {
+            height: 100%;
+            background: hsl(var(--accent));
+            transform-origin: left;
+            animation: fillBar 1.5s ease forwards;
+            transform: scaleX(0);
+        }
+        @keyframes fillBar {
+            to { transform: scaleX(1); }
+        }
+        .clients-section { padding: 4rem 0; }
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid hsl(var(--border));
+        }
+        @media (max-width: 767px) {
+            .client-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .client-cell {
+            padding: 2rem 1.5rem;
+            border-right: 1px solid hsl(var(--border));
+            border-bottom: 1px solid hsl(var(--border));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .client-cell:nth-child(4n) { border-right: none; }
+        .client-name {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: hsl(var(--muted-foreground));
+            opacity: 0.45;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased selection:bg-accent selection:text-white">
+
+    <!-- Fixed Header -->
+    <header class="site-header fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+            <a href="index.html" class="brand-group">
+                <span class="brand font-display text-2xl font-semibold tracking-tight text-foreground">SILK &amp; STONE</span>
+                <span class="brand-subheading">DESIGN + BUILD</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300 active">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Contact</a>
+            </nav>
+            <button class="md:hidden text-foreground bg-transparent border-none cursor-pointer p-2" aria-label="Toggle menu" id="menu-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-nav" class="md:hidden bg-background border-b border-border hidden animate-fade-in">
+            <div class="flex flex-col px-6 py-6 gap-6">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase active">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- ═══════════ PAGE HERO ═══════════ -->
+        <div class="page-hero">
+            <img src="about-hero-double-volume.jpg" alt="Aerial view of double-volume lounge — SILK &amp; STONE">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <p class="font-body text-xs tracking-widest uppercase mb-3" style="color:rgba(255,255,255,0.55);">About Us</p>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-medium leading-tight" style="color:white; max-width:600px;">
+                    Design is how we <em class="font-normal italic">care for people</em>
+                </h1>
+            </div>
+        </div>
+
+        <!-- ═══════════ INTRO PARAGRAPHS ═══════════ -->
+        <section class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+                <div class="animate-fade-up">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">Our Story</p>
+                    <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground leading-tight mb-8">
+                        A studio built on curiosity, craft, and <em class="font-normal italic">conviction</em>
+                    </h2>
+                    <p class="font-body text-muted-foreground leading-relaxed mb-5 text-base">
+                        SILK &amp; STONE began with a clear conviction: that interior architecture and bespoke design at its highest expression should feel personal, material, and alive. We spent years working to bring uncompromising craft, tactile richness, and turnkey design-build excellence to East Africa's most discerning clients.
+                    </p>
+                    <p class="font-body text-muted-foreground leading-relaxed mb-5 text-base">
+                        Today, with a curated team of dedicated designers, architects, and project managers who share the same founding belief: that the spaces we inhabit shape how we feel, think, and connect. Every project is a careful dialogue between client and designer — your story becomes the foundation for something truly extraordinary.
+                    </p>
+                    <p class="font-body text-muted-foreground leading-relaxed text-base">
+                        From intimate Nairobi apartments and sprawling Karen estates to celebrated commercial environments across East Africa, we bring the same rigour, empathy, and aesthetic intelligence to every commission regardless of scale.
+                    </p>
+                </div>
+                <div>
+                    <!-- Studio at a glance -->
+                    <div style="background:hsl(var(--card)); border:1px solid hsl(var(--border)); padding:2.5rem; border-radius:2px; margin-bottom:2rem;">
+                        <h3 class="font-display text-xl font-medium text-foreground mb-6">Studio at a Glance</h3>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+                            <div style="padding:1.5rem; background:hsl(var(--secondary)); border-radius:2px;">
+                                <span style="font-family:var(--font-display); font-size:2rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1;">2022</span>
+                                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Established</span>
+                            </div>
+                            <div style="padding:1.5rem; background:hsl(var(--secondary)); border-radius:2px;">
+                                <span style="font-family:var(--font-display); font-size:2rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1;">8</span>
+                                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Team Members</span>
+                            </div>
+                            <div style="padding:1.5rem; background:hsl(var(--secondary)); border-radius:2px;">
+                                <span style="font-family:var(--font-display); font-size:2rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1;">200+</span>
+                                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Completed Projects</span>
+                            </div>
+                            <div style="padding:1.5rem; background:hsl(var(--secondary)); border-radius:2px;">
+                                <span style="font-family:var(--font-display); font-size:2rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1;">3</span>
+                                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Countries Served</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Areas of expertise -->
+                    <div style="padding:2.5rem; background:hsl(var(--card)); border:1px solid hsl(var(--border)); border-radius:2px;">
+                        <h3 class="font-display text-xl font-medium text-foreground mb-6">Areas of Expertise</h3>
+                        <div class="skill-bar">
+                            <div class="skill-label"><span>Residential Design</span><span>95%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width:95%;"></div></div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-label"><span>Commercial Interiors</span><span>80%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width:80%;"></div></div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-label"><span>Custom Millwork &amp; Joinery</span><span>88%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width:88%;"></div></div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-label"><span>Material &amp; Textile Curation</span><span>92%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width:92%;"></div></div>
+                        </div>
+                        <div class="skill-bar" style="margin-bottom:0;">
+                            <div class="skill-label"><span>Retail &amp; Hospitality</span><span>70%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width:70%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ CORE PILLARS ═══════════ -->
+        <section class="section-padding bg-secondary">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">Our Values</p>
+                <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-16">The principles that guide everything we do</h2>
+                <div class="values-grid">
+                    <div class="value-block reveal-on-scroll">
+                        <div class="value-letter">L</div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-4">Listen First</h3>
+                        <p class="font-body text-muted-foreground leading-relaxed">
+                            Every great space starts with understanding. We immerse ourselves in your life, your daily rhythms, your personal aspirations, and even the things you cannot yet articulate. We believe deeply that the client is always the best brief.
+                        </p>
+                    </div>
+                    <div class="value-block reveal-on-scroll">
+                        <div class="value-letter">M</div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-4">Material Truth</h3>
+                        <p class="font-body text-muted-foreground leading-relaxed">
+                            We honour natural materials — stone, hardwood, linen, hand-thrown clay, aged brass, and raw plaster — letting their inherent texture, weight, and beauty guide the design. Materials chosen with conviction age beautifully. Trend-chasing never does.
+                        </p>
+                    </div>
+                    <div class="value-block reveal-on-scroll">
+                        <div class="value-letter">T</div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-4">Timeless Craft</h3>
+                        <p class="font-body text-muted-foreground leading-relaxed">
+                            Trends fade with the seasons. We design for the decades ahead, creating harmonious spaces that age gracefully and grow richer with time. Our projects are built with the kind of careful attention to joinery, proportion, and finish that separates design from decoration.
+                        </p>
+                    </div>
+                    <div class="value-block reveal-on-scroll">
+                        <div class="value-letter">E</div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-4">Emotional Resonance</h3>
+                        <p class="font-body text-muted-foreground leading-relaxed">
+                            A room should do more than look beautiful in a photograph. It should make you feel something the moment you enter — calm, inspired, held. We design not just for the eye, but for the body and spirit that inhabit the space every day.
+                        </p>
+                    </div>
+                    <div class="value-block reveal-on-scroll">
+                        <div class="value-letter">P</div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-4">Precision in Practice</h3>
+                        <p class="font-body text-muted-foreground leading-relaxed">
+                            Beautiful design is only as good as its execution. We are rigorous project managers as much as designers — coordinating contractors, artisans, and suppliers with the same precision we bring to a concept board. The details are where the difference lives.
+                        </p>
+                    </div>
+                    <div class="value-block reveal-on-scroll">
+                        <div class="value-letter">S</div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-4">Sustainable Intention</h3>
+                        <p class="font-body text-muted-foreground leading-relaxed">
+                            We favour local craftsmanship, sustainable sourcing, and materials with low environmental impact wherever possible. Longevity is itself a form of sustainability — a well-made space outlasts ten poorly made ones.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FOUNDER PULL QUOTE ═══════════ -->
+        <div class="founder-quote">
+            <p style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase; color:hsla(var(--primary-foreground)/0.45); margin-bottom:2rem;">A word from our principal</p>
+            <blockquote style="font-family:var(--font-display); font-size:clamp(1.4rem, 3vw, 2.2rem); font-style:italic; font-weight:400; color:hsl(var(--primary-foreground)); max-width:820px; margin:0 auto 2.5rem; line-height:1.45;">
+                "I started SILK &amp; STONE with one belief: that the way we design our homes and workplaces is a direct expression of how we value life itself. To design well is an act of care — for the person who will live there, for the craftspeople who build it, and for the world that provides the materials."
+            </blockquote>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:0.3rem;">
+                <span style="font-family:var(--font-display); font-size:1rem; font-weight:500; color:hsl(var(--primary-foreground));">Simon Mwakodi</span>
+                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsla(var(--primary-foreground)/0.5);">Architect &amp; Lead Designer · SILK &amp; STONE</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ TEAM ═══════════ -->
+        <section class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4 text-center">Our People</p>
+            <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-4 text-center">
+                The people behind SILK &amp; STONE
+            </h2>
+            <p class="font-body text-muted-foreground text-center max-w-xl mx-auto mb-16">
+                We are a small, deliberate team. Every project is led personally by a senior designer — never delegated to juniors — ensuring the quality of attention your space deserves.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-card reveal-on-scroll">
+                    <img src="portfolio-office.jpg" alt="Simon Mwakodi — Architect &amp; Lead Designer" class="team-card-img">
+                    <div class="team-card-body">
+                        <h3 class="font-display text-xl font-medium text-foreground mb-1">Simon Mwakodi</h3>
+                        <p class="font-body text-xs tracking-widest uppercase text-accent mb-4">Architect &amp; Lead Designer</p>
+                        <p class="font-body text-muted-foreground text-sm leading-relaxed mb-4">Simon brings a meticulous architectural sensibility and keen eye for proportion, structural balance, and spatial flow to SILK &amp; STONE. He leads conceptual architecture, spatial planning, and turnkey design-build execution across all residential and commercial commissions.</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1rem;">
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Architectural Design</span>
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Spatial Planning</span>
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Turnkey Design-Build</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card reveal-on-scroll">
+                    <img src="project-artisan-concept.jpg" alt="Kelvin Mbatha — Quantity Surveyor" class="team-card-img">
+                    <div class="team-card-body">
+                        <h3 class="font-display text-xl font-medium text-foreground mb-1">Kelvin Mbatha</h3>
+                        <p class="font-body text-xs tracking-widest uppercase text-accent mb-4">Quantity Surveyor</p>
+                        <p class="font-body text-muted-foreground text-sm leading-relaxed mb-4">Kelvin governs all financial dimensions of every project — from initial bill of quantities and cost planning through to final account settlement. His precise procurement oversight and value-engineering expertise ensure every commission is delivered on budget without compromise to quality.</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1rem;">
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Cost Management</span>
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Procurement &amp; Contracts</span>
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Value Engineering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card reveal-on-scroll">
+                    <img src="portfolio-retail.jpg" alt="Abdimalik Dawloh — Project Manager" class="team-card-img">
+                    <div class="team-card-body">
+                        <h3 class="font-display text-xl font-medium text-foreground mb-1">Abdimalik Dawloh</h3>
+                        <p class="font-body text-xs tracking-widest uppercase text-accent mb-4">Project Manager</p>
+                        <p class="font-body text-muted-foreground text-sm leading-relaxed mb-4">Abdimalik coordinates on-site operations, artisan fabrication schedules, and multidisciplinary contractor teams from inception to handover. With rigorous timeline management and attention to finish quality, he guarantees seamless turnkey delivery.</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1rem;">
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Project Management</span>
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Site Operations</span>
+                            <span style="background:hsl(var(--secondary)); font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:hsl(var(--muted-foreground)); padding:0.3rem 0.75rem; border-radius:2px;">Quality Assurance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ STUDIO TIMELINE ═══════════ -->
+        <section class="section-padding bg-secondary">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">Our Journey</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-12">Our trajectory of craft, intention, and growth</h2>
+                        <div class="timeline">
+                            <div class="timeline-item reveal-on-scroll">
+                                <p class="timeline-year">2022</p>
+                                <h4 class="font-display text-lg font-medium text-foreground mb-2">Studio Established</h4>
+                                <p class="font-body text-sm text-muted-foreground leading-relaxed">SILK &amp; STONE is established in Nairobi with a focused commitment to natural materiality, quiet luxury, and bespoke design-build architecture.</p>
+                            </div>
+                            <div class="timeline-item reveal-on-scroll">
+                                <p class="timeline-year">2023</p>
+                                <h4 class="font-display text-lg font-medium text-foreground mb-2">Atelier &amp; Custom Furniture Launch</h4>
+                                <p class="font-body text-sm text-muted-foreground leading-relaxed">Expanding with an in-house custom furniture atelier and completing our first landmark private residences across Muthaiga, Karen, and Runda.</p>
+                            </div>
+                            <div class="timeline-item reveal-on-scroll">
+                                <p class="timeline-year">2024</p>
+                                <h4 class="font-display text-lg font-medium text-foreground mb-2">Commercial &amp; Hospitality Commissions</h4>
+                                <p class="font-body text-sm text-muted-foreground leading-relaxed">Commissioned for prestigious hospitality salons, flagship boutiques, and private member spaces across Westlands and the Village Market.</p>
+                            </div>
+                            <div class="timeline-item reveal-on-scroll">
+                                <p class="timeline-year">2025</p>
+                                <h4 class="font-display text-lg font-medium text-foreground mb-2">Landmark Regional Estates</h4>
+                                <p class="font-body text-sm text-muted-foreground leading-relaxed">Celebrating over 200 completed bespoke spaces and expanding into turnkey estate commissions across Kenya and the East African Rift Valley.</p>
+                            </div>
+                            <div class="timeline-item reveal-on-scroll">
+                                <p class="timeline-year">2026</p>
+                                <h4 class="font-display text-lg font-medium text-foreground mb-2">Design + Build Practice Evolution</h4>
+                                <p class="font-body text-sm text-muted-foreground leading-relaxed">Fully integrating architectural concept, bespoke furniture fabrication, and turnkey construction under one cohesive Design + Build studio banner.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Awards column -->
+                    <div>
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">Awards &amp; Recognition</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-8">Honoured for excellence</h2>
+                        <div class="awards-list">
+                            <div class="award-row">
+                                <span class="award-row-year">2024</span>
+                                <div>
+                                    <p class="font-display text-base font-medium text-foreground">Nairobi Design Award</p>
+                                    <p class="font-body text-xs text-muted-foreground">Best Interior Studio</p>
+                                </div>
+                            </div>
+                            <div class="award-row">
+                                <span class="award-row-year">2023</span>
+                                <div>
+                                    <p class="font-display text-base font-medium text-foreground">AD Top 100 Africa</p>
+                                    <p class="font-body text-xs text-muted-foreground">Architectural Digest</p>
+                                </div>
+                            </div>
+                            <div class="award-row">
+                                <span class="award-row-year">2022</span>
+                                <div>
+                                    <p class="font-display text-base font-medium text-foreground">SBID International Award</p>
+                                    <p class="font-body text-xs text-muted-foreground">Residential Interiors — Finalist</p>
+                                </div>
+                            </div>
+                            <div class="award-row">
+                                <span class="award-row-year">2022</span>
+                                <div>
+                                    <p class="font-display text-base font-medium text-foreground">Elle Décor Design Star</p>
+                                    <p class="font-body text-xs text-muted-foreground">East Africa Edition</p>
+                                </div>
+                            </div>
+                            <div class="award-row">
+                                <span class="award-row-year">2020</span>
+                                <div>
+                                    <p class="font-display text-base font-medium text-foreground">Design Indaba Feature</p>
+                                    <p class="font-body text-xs text-muted-foreground">Emerging Studios · Africa</p>
+                                </div>
+                            </div>
+                            <div class="award-row">
+                                <span class="award-row-year">2019</span>
+                                <div>
+                                    <p class="font-display text-base font-medium text-foreground">Living Spaces KE Award</p>
+                                    <p class="font-body text-xs text-muted-foreground">Best Commercial Interior</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ CLIENTS ═══════════ -->
+        <section class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4 text-center">Trusted By</p>
+            <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-12 text-center">Clients who trust us with their spaces</h2>
+            <div class="client-grid">
+                <div class="client-cell"><span class="client-name">Equity Group</span></div>
+                <div class="client-cell"><span class="client-name">Villa Rosa Kempinski</span></div>
+                <div class="client-cell"><span class="client-name">Aga Khan Foundation</span></div>
+                <div class="client-cell"><span class="client-name">Radisson Blu</span></div>
+                <div class="client-cell"><span class="client-name">Village Market</span></div>
+                <div class="client-cell"><span class="client-name">Two Rivers Mall</span></div>
+                <div class="client-cell"><span class="client-name">Nation Media Group</span></div>
+                <div class="client-cell"><span class="client-name">Safaricom PLC</span></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FULL IMAGE ═══════════ -->
+        <section class="image-reveal overflow-hidden">
+            <img src="hero-living.jpg" alt="SILK &amp; STONE interior atmosphere" class="w-full object-cover" style="height:450px;" loading="lazy">
+        </section>
+
+        <!-- ═══════════ CTA ═══════════ -->
+        <section class="section-padding text-center">
+            <div style="max-width:36rem; margin:0 auto; padding:0 1.5rem;">
+                <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-6">Let's create together</h2>
+                <p class="font-body text-muted-foreground mb-8 text-base">
+                    We'd love to learn about your space and vision. Reach out for a complimentary 30-minute consultation — no obligation, just a conversation.
+                </p>
+                <a href="contact.html" class="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 font-body text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm shadow-md">
+                    Contact Us
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-primary-foreground py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="brand-group">
+                        <span class="brand font-display text-2xl font-semibold tracking-tight text-primary-foreground">SILK &amp; STONE</span>
+                        <span class="brand-subheading-footer">DESIGN + BUILD</span>
+                    </a>
+                    <p class="font-body text-sm mt-6 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Boutique interior design studio crafting timeless spaces rooted in warmth, materiality, and the art of living well.</p>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Explore</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="index.html"     class="hover:text-primary-foreground transition-colors">Home</a></li>
+                        <li><a href="about.html"     class="hover:text-primary-foreground transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-primary-foreground transition-colors">Portfolio</a></li>
+                        <li><a href="services.html"  class="hover:text-primary-foreground transition-colors">Services</a></li>
+                        <li><a href="contact.html"   class="hover:text-primary-foreground transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Services</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Interior Design</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Space Planning</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Renovation &amp; Remodeling</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Furniture Selection</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Custom Millwork</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Design Consultation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Newsletter</h4>
+                    <p class="font-body text-sm mb-4 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Subscribe to receive our seasonal curation on architecture, materiality, and interiors.</p>
+                    <form id="newsletter-form" class="space-y-3">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 text-sm rounded-sm" style="background:hsla(var(--primary-foreground)/0.08); color:hsl(var(--primary-foreground)); border:1px solid hsla(var(--primary-foreground)/0.15); outline:none;">
+                        <button type="submit" class="w-full bg-accent text-accent-foreground px-6 py-3 font-body text-xs tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 font-body" style="border-top:1px solid hsla(var(--primary-foreground)/0.1); font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:hsla(var(--primary-foreground)/0.35);">
+                <p>© 2026 SILK &amp; STONE Interior Design. All rights reserved.</p>
+                <div style="display:flex; align-items:center; gap:0.5rem; color:hsla(var(--primary-foreground)/0.3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Thindigua, Kiambu / Nairobi, Kenya
+                </div>
+                <div class="flex gap-8">
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Privacy Policy</a>
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/254769260012" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    </a>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

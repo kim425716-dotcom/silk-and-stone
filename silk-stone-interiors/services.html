@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — SILK &amp; STONE | Interior Design, Space Planning &amp; More</title>
+    <meta name="description" content="Explore the full suite of interior design services offered by SILK &amp; STONE — from concept to completion, space planning, renovation, furniture curation, and bespoke millwork.">
+    <meta name="author" content="SILK &amp; STONE">
+    <link rel="canonical" href="https://silkandstone.design/services">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        .page-hero {
+            height: 58vh;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        .page-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+        .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,17,15,0.7) 0%, rgba(20,17,15,0.25) 50%, rgba(20,17,15,0.1) 100%); }
+        .page-hero-content { position: relative; z-index: 10; padding: 3.5rem 2rem; max-width: 80rem; width: 100%; margin: 0 auto; }
+
+        /* Detailed service rows */
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 480px;
+        }
+        .service-row.reverse { direction: rtl; }
+        .service-row.reverse > * { direction: ltr; }
+        @media (max-width: 767px) {
+            .service-row { grid-template-columns: 1fr; direction: ltr; }
+        }
+        .service-row-img {
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+        }
+        .service-row-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .service-row:hover .service-row-img img {
+            transform: scale(1.03);
+        }
+        .service-row-content {
+            padding: 4rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: hsl(var(--background));
+        }
+        @media (max-width: 1023px) {
+            .service-row-content { padding: 2.5rem 2rem; }
+        }
+        .service-row.alternate .service-row-content {
+            background: hsl(var(--secondary));
+        }
+
+        /* Pricing tiers */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 767px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+        .pricing-card {
+            border: 1px solid hsl(var(--border));
+            padding: 2.5rem 2rem;
+            border-radius: 2px;
+            position: relative;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .pricing-card:hover {
+            border-color: hsl(var(--accent));
+            box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+        }
+        .pricing-card.featured {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border-color: hsl(var(--primary));
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-tagline {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .pricing-card.featured .pricing-tagline { color: hsla(var(--primary-foreground)/0.65); }
+        .pricing-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: hsl(var(--foreground));
+        }
+        .pricing-card.featured .pricing-feature { color: hsl(var(--primary-foreground)); }
+        .pricing-check {
+            width: 16px;
+            height: 16px;
+            color: hsl(var(--accent));
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* FAQ accordion */
+        .faq-item {
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: hsl(var(--foreground));
+            gap: 1rem;
+            list-style: none;
+            user-select: none;
+        }
+        .faq-question:hover { color: hsl(var(--accent)); }
+        .faq-icon { flex-shrink: 0; transition: transform 0.3s; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+        }
+        .faq-item.open .faq-answer { max-height: 400px; }
+        .faq-answer-inner {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: hsl(var(--muted-foreground));
+            line-height: 1.7;
+            padding-bottom: 1.5rem;
+        }
+        /* Deliverables list */
+        .deliverable-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: hsl(var(--secondary));
+            border: 1px solid hsl(var(--border));
+            padding: 0.35rem 0.9rem;
+            border-radius: 2px;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: hsl(var(--foreground));
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased selection:bg-accent selection:text-white">
+
+    <!-- Header -->
+    <header class="site-header fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+            <a href="index.html" class="brand-group">
+                <span class="brand font-display text-2xl font-semibold tracking-tight text-foreground">SILK &amp; STONE</span>
+                <span class="brand-subheading">DESIGN + BUILD</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300 active">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Contact</a>
+            </nav>
+            <button class="md:hidden text-foreground bg-transparent border-none cursor-pointer p-2" aria-label="Toggle menu" id="menu-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+        <div id="mobile-nav" class="md:hidden bg-background border-b border-border hidden animate-fade-in">
+            <div class="flex flex-col px-6 py-6 gap-6">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase active">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- Page Hero -->
+        <div class="page-hero">
+            <img src="services-hero.jpg?v=2" alt="Comprehensive design services — bespoke TV unit and fluted millwork by SILK &amp; STONE">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <p class="font-body text-xs tracking-widest uppercase mb-3" style="color:rgba(255,255,255,0.85); text-shadow: 0 1px 4px rgba(0,0,0,0.4);">What We Do</p>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-medium leading-tight" style="color:white; max-width:600px; text-shadow: 0 2px 10px rgba(0,0,0,0.35);">
+                    Comprehensive <em class="font-normal italic">design services</em>
+                </h1>
+            </div>
+        </div>
+
+        <!-- Intro -->
+        <section class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <div class="animate-fade-up">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">Our Services</p>
+                    <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-6">
+                        From first sketch to final reveal
+                    </h2>
+                </div>
+                <div>
+                    <p class="font-body text-muted-foreground leading-relaxed text-base mb-4">
+                        From initial consultation to final installation, we offer a comprehensive suite of interior design services tailored to bring your vision to life — no matter the scale, scope, or complexity of your project.
+                    </p>
+                    <p class="font-body text-muted-foreground leading-relaxed text-base">
+                        Whether you need complete full-service design management for a new build, expert spatial guidance for a renovation, or a focused consultation on a single room, we bring the same rigour, creativity, and care to every engagement.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ DETAILED SERVICE ROWS ═══════════ -->
+
+        <!-- Service 1: Full Interior Design -->
+        <div class="service-row">
+            <div class="service-row-img">
+                <img src="portfolio-bedroom.jpg" alt="Full Interior Design by SILK &amp; STONE" loading="lazy">
+            </div>
+            <div class="service-row-content reveal-on-scroll">
+                <div style="color:hsl(var(--accent)); margin-bottom:1.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m14.622 17.897-10.68-2.913"/><path d="M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z"/><path d="M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15"/></svg>
+                </div>
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">01 — Signature Service</p>
+                <h3 class="font-display text-3xl font-medium text-foreground mb-4">Full Interior Design</h3>
+                <p class="font-body text-muted-foreground leading-relaxed mb-4">Our flagship service covers every dimension of a design project, from the first site visit to the moment you step into your completed space. We handle spatial planning, material selection, furniture sourcing, contractor management, and final installation — providing a single, seamless point of contact throughout the entire process.</p>
+                <p class="font-body text-muted-foreground leading-relaxed mb-6">Suited for: New builds, full renovations, complete residential or commercial fit-outs.</p>
+                <div style="margin-bottom:1.5rem;">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">Key Deliverables</p>
+                    <div>
+                        <span class="deliverable-chip">✦ Concept Presentation</span>
+                        <span class="deliverable-chip">✦ Floor Plan &amp; Layout</span>
+                        <span class="deliverable-chip">✦ 3D Renderings</span>
+                        <span class="deliverable-chip">✦ Material Boards</span>
+                        <span class="deliverable-chip">✦ Lighting Plan</span>
+                        <span class="deliverable-chip">✦ Procurement Schedule</span>
+                        <span class="deliverable-chip">✦ Site Management</span>
+                        <span class="deliverable-chip">✦ Final Styling</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                    Enquire About This Service →
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 2: Space Planning -->
+        <div class="service-row alternate">
+            <div class="service-row-img">
+                <img src="portfolio-kitchen.jpg" alt="Space Planning by SILK &amp; STONE" loading="lazy">
+            </div>
+            <div class="service-row-content reveal-on-scroll">
+                <div style="color:hsl(var(--accent)); margin-bottom:1.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+                </div>
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">02 — Architecture-Led</p>
+                <h3 class="font-display text-3xl font-medium text-foreground mb-4">Space Planning</h3>
+                <p class="font-body text-muted-foreground leading-relaxed mb-4">Strategic spatial analysis and layout design that transforms raw architectural shells into intuitive, human-scaled living or working environments. We study circulation, natural light, proportion, and adjacencies to unlock the full potential of your space before any walls are touched or furniture purchased.</p>
+                <p class="font-body text-muted-foreground leading-relaxed mb-6">Suited for: Pre-construction phase, apartment/office fit-outs, open-plan reconfiguration.</p>
+                <div style="margin-bottom:1.5rem;">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">Key Deliverables</p>
+                    <div>
+                        <span class="deliverable-chip">✦ Existing Plan Analysis</span>
+                        <span class="deliverable-chip">✦ Multiple Layout Options</span>
+                        <span class="deliverable-chip">✦ Furniture Layout Plan</span>
+                        <span class="deliverable-chip">✦ Traffic Flow Study</span>
+                        <span class="deliverable-chip">✦ Partition Recommendations</span>
+                        <span class="deliverable-chip">✦ Natural Light Assessment</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                    Enquire About This Service →
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 3: Renovation -->
+        <div class="service-row">
+            <div class="service-row-img">
+                <img src="project-calacatta-powder-room.jpg" alt="Luxury Bathroom &amp; Ensuite Renovation by SILK &amp; STONE" loading="lazy" style="object-position: center 30%;">
+            </div>
+            <div class="service-row-content reveal-on-scroll">
+                <div style="color:hsl(var(--accent)); margin-bottom:1.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+                </div>
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">03 — Transformation</p>
+                <h3 class="font-display text-3xl font-medium text-foreground mb-4">Renovation &amp; Remodeling</h3>
+                <p class="font-body text-muted-foreground leading-relaxed mb-4">Thoughtful renovation that honours the original character and bones of a space while introducing modern comfort, contemporary materiality, and enhanced spatial quality. We work closely with structural engineers and contractors to ensure seamless execution within your timeline and budget.</p>
+                <p class="font-body text-muted-foreground leading-relaxed mb-6">Suited for: Dated apartments, heritage properties, kitchen/bathroom renovations, and full gut-renovations.</p>
+                <div style="margin-bottom:1.5rem;">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">Key Deliverables</p>
+                    <div>
+                        <span class="deliverable-chip">✦ Scope Assessment</span>
+                        <span class="deliverable-chip">✦ Budget Planning</span>
+                        <span class="deliverable-chip">✦ Contractor Briefing</span>
+                        <span class="deliverable-chip">✦ Material Specification</span>
+                        <span class="deliverable-chip">✦ Site Supervision</span>
+                        <span class="deliverable-chip">✦ Snag Management</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                    Enquire About This Service →
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 4: Furniture -->
+        <div class="service-row alternate">
+            <div class="service-row-img">
+                <img src="furniture-terracotta-bridge-chairs-front.jpg" alt="Custom Sculptural Seating &amp; Furniture Curation by SILK &amp; STONE" loading="lazy">
+            </div>
+            <div class="service-row-content reveal-on-scroll">
+                <div style="color:hsl(var(--accent)); margin-bottom:1.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"/></svg>
+                </div>
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">04 — Curation</p>
+                <h3 class="font-display text-3xl font-medium text-foreground mb-4">Furniture &amp; Object Selection</h3>
+                <p class="font-body text-muted-foreground leading-relaxed mb-4">Curated furniture sourcing from master artisan makers, international design studios, and local East African craftspeople — each piece selected in harmonious proportion to your space and the specific quality of light within it. We manage the full procurement process: quotations, logistics, and delivery.</p>
+                <p class="font-body text-muted-foreground leading-relaxed mb-6">Suited for: New homes requiring full furniture, single-room refurnishing, commercial fit-outs.</p>
+                <div style="margin-bottom:1.5rem;">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">Key Deliverables</p>
+                    <div>
+                        <span class="deliverable-chip">✦ Furniture Schedule</span>
+                        <span class="deliverable-chip">✦ Visual Presentation</span>
+                        <span class="deliverable-chip">✦ Supplier Sourcing</span>
+                        <span class="deliverable-chip">✦ Scale Drawings</span>
+                        <span class="deliverable-chip">✦ Procurement Management</span>
+                        <span class="deliverable-chip">✦ Installation &amp; Styling</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                    Enquire About This Service →
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 5: Custom Millwork -->
+        <div class="service-row">
+            <div class="service-row-img">
+                <img src="project-greige-dressing-suite.jpg" alt="Custom Millwork &amp; Bespoke Wardrobe Joinery by SILK &amp; STONE" loading="lazy">
+            </div>
+            <div class="service-row-content reveal-on-scroll">
+                <div style="color:hsl(var(--accent)); margin-bottom:1.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+                </div>
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">05 — Bespoke</p>
+                <h3 class="font-display text-3xl font-medium text-foreground mb-4">Custom Millwork &amp; Joinery</h3>
+                <p class="font-body text-muted-foreground leading-relaxed mb-4">Bespoke cabinetry, built-in shelving systems, statement wardrobes, kitchen joinery, and signature furnishings designed by us and fabricated by hand by our network of master craftspeople. Every dimension, joint, and finish is specified with precision. Nothing is off the shelf.</p>
+                <p class="font-body text-muted-foreground leading-relaxed mb-6">Suited for: Clients seeking furniture and joinery that is entirely unique to their space and lifestyle.</p>
+                <div style="margin-bottom:1.5rem;">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">Key Deliverables</p>
+                    <div>
+                        <span class="deliverable-chip">✦ Detailed CAD Drawings</span>
+                        <span class="deliverable-chip">✦ Material Samples</span>
+                        <span class="deliverable-chip">✦ Workshop Coordination</span>
+                        <span class="deliverable-chip">✦ Quality Inspection</span>
+                        <span class="deliverable-chip">✦ On-site Installation</span>
+                        <span class="deliverable-chip">✦ Hardware Selection</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                    Enquire About This Service →
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 6: Consultation -->
+        <div class="service-row alternate">
+            <div class="service-row-img">
+                <img src="portfolio-dining.jpg" alt="Design Consultation by SILK &amp; STONE" loading="lazy">
+            </div>
+            <div class="service-row-content reveal-on-scroll">
+                <div style="color:hsl(var(--accent)); margin-bottom:1.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                </div>
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">06 — Entry Point</p>
+                <h3 class="font-display text-3xl font-medium text-foreground mb-4">Design Consultation</h3>
+                <p class="font-body text-muted-foreground leading-relaxed mb-4">Expert aesthetic guidance delivered in focused sessions — either in your space or virtually. Ideal for clients who want a professional design eye without the commitment of a full project. We assess your space, discuss your vision, provide clear direction on materials and layout, and give you a roadmap you can execute independently or with tradespeople of your choice.</p>
+                <p class="font-body text-muted-foreground leading-relaxed mb-6">Suited for: Single rooms, budget-conscious projects, second opinions, and pre-purchase assessments.</p>
+                <div style="margin-bottom:1.5rem;">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-3">Key Deliverables</p>
+                    <div>
+                        <span class="deliverable-chip">✦ 2hr Site Visit</span>
+                        <span class="deliverable-chip">✦ Written Report</span>
+                        <span class="deliverable-chip">✦ Mood Board</span>
+                        <span class="deliverable-chip">✦ Supplier Recommendations</span>
+                        <span class="deliverable-chip">✦ Priority Action Plan</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                    Book a Consultation →
+                </a>
+            </div>
+        </div>
+
+        <!-- ═══════════ PROCESS ═══════════ -->
+        <section class="section-padding bg-secondary">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">How We Work</p>
+                <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-16">Our Process</h2>
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2rem;">
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">01</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Discovery</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">We meet, listen deeply, and immerse ourselves in your vision, lifestyle, timeline, and budget. A thorough brief is the foundation of every outstanding design.</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">02</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Concept</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">Mood boards, tactile material palettes, rough sketches, and spatial layout studies take shape. We present a clear design narrative for your review and feedback.</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">03</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Development</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">Detailed technical drawings, 3D visualisations, finish specifications, and complete procurement schedules are refined collaboratively to ensure total clarity.</p>
+                    </div>
+                    <div class="reveal-on-scroll" style="border-top:2px solid hsl(var(--accent)); padding-top:2rem;">
+                        <span class="font-display text-4xl font-light text-accent" style="display:block; margin-bottom:1rem;">04</span>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-3">Execution</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed">We manage every fine detail — artisan coordination, deliveries, site inspections, and final installation — handing over a space that exceeds your expectations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ PRICING TIERS ═══════════ -->
+        <section class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4 text-center">Investment</p>
+            <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-4 text-center">Design Packages</h2>
+            <p class="font-body text-muted-foreground text-center max-w-xl mx-auto mb-16">Each project is priced individually. The following packages give you a sense of our engagement levels. All engagements begin with a complimentary 30-minute discovery call.</p>
+            <div class="pricing-grid">
+                <!-- Essential -->
+                <div class="pricing-card reveal-on-scroll">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-2">Essential</p>
+                    <p class="pricing-name">Consultation</p>
+                    <p class="pricing-tagline">Professional design guidance for a single room or project phase.</p>
+                    <div style="border-top:1px solid hsl(var(--border)); padding-top:1.5rem; margin-bottom:2rem;">
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            2-hour in-home site visit
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Curated mood board
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Written design recommendations
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Supplier &amp; product referrals
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            1-week follow-up email support
+                        </div>
+                    </div>
+                    <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                        Book a Consultation →
+                    </a>
+                </div>
+
+                <!-- Signature (featured) -->
+                <div class="pricing-card featured reveal-on-scroll" style="position:relative;">
+                    <div class="pricing-badge">Most Popular</div>
+                    <p class="font-body text-xs tracking-widest uppercase mb-2" style="color:hsla(var(--primary-foreground)/0.5);">Signature</p>
+                    <p class="pricing-name" style="color:hsl(var(--primary-foreground));">Full Design Service</p>
+                    <p class="pricing-tagline">End-to-end design management for your entire home or commercial space.</p>
+                    <div style="border-top:1px solid hsla(var(--primary-foreground)/0.15); padding-top:1.5rem; margin-bottom:2rem;">
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" style="color:hsl(var(--accent));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Everything in Consultation
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" style="color:hsl(var(--accent));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Full spatial planning &amp; layouts
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" style="color:hsl(var(--accent));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            3D renderings &amp; visualisations
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" style="color:hsl(var(--accent));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Full furniture &amp; materials procurement
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" style="color:hsl(var(--accent));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Contractor coordination
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" style="color:hsl(var(--accent));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            On-site supervision throughout
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" style="color:hsl(var(--accent));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Final reveal &amp; professional styling
+                        </div>
+                    </div>
+                    <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase hover:opacity-80 transition-opacity" style="color:hsl(var(--accent));">
+                        Enquire Now →
+                    </a>
+                </div>
+
+                <!-- Bespoke -->
+                <div class="pricing-card reveal-on-scroll">
+                    <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-2">Bespoke</p>
+                    <p class="pricing-name">Custom Design &amp; Build</p>
+                    <p class="pricing-tagline">The full SILK &amp; STONE experience, including custom millwork, artisan sourcing, and total project management.</p>
+                    <div style="border-top:1px solid hsl(var(--border)); padding-top:1.5rem; margin-bottom:2rem;">
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Everything in Full Design Service
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Custom millwork &amp; joinery design
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            International &amp; artisan sourcing
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Dedicated senior project manager
+                        </div>
+                        <div class="pricing-feature">
+                            <svg class="pricing-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Post-project support (3 months)
+                        </div>
+                    </div>
+                    <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase text-accent hover:opacity-70 transition-opacity">
+                        Discuss Your Project →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FAQ ═══════════ -->
+        <section class="section-padding bg-secondary">
+            <div class="max-w-4xl mx-auto px-6 md:px-12">
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4 text-center">Questions &amp; Answers</p>
+                <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground mb-16 text-center">Frequently Asked Questions</h2>
+                <div id="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            How long does a typical interior design project take?
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="faq-answer-inner">Project timelines vary depending on scope, scale, and complexity. A single-room consultation can be completed within 2–3 weeks. A full residential design project typically runs between 4–8 months from the first brief to final reveal. Large commercial projects may extend to 10–14 months. We provide a detailed project timeline during the proposal stage so you know exactly what to expect at every phase.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Do you work on projects outside of Nairobi?
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="faq-answer-inner">Yes — we take on projects across Kenya and in neighbouring East African countries. We regularly design for private residences and estates in Nairobi, Kiambu, Nyeri, Mount Kenya, Naivasha, and the Coast, as well as Kampala (Uganda) and Arusha (Tanzania). For regional projects, site coordination and logistics are structured transparently from the first discovery call.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            What is your minimum project budget?
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="faq-answer-inner">Our consultation service has no minimum budget. For full design services, we work with clients investing from KES 2.5M upwards in their space (including furnishings and materials). Our bespoke packages are typically suited to projects above KES 8M. Every proposal is tailored to your specific scope — we are transparent about costs from the very first conversation.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Do you manage contractors and construction?
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="faq-answer-inner">Yes. In our Full Design Service and Bespoke packages, we act as your design lead throughout the construction and installation phase. We brief, coordinate, and regularly inspect the work of all tradespeople, contractors, and artisans to ensure every detail is executed to specification. We can work with your existing contractors or introduce you to our trusted network of vetted builders and tradespeople.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Can I be involved in the design decisions?
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="faq-answer-inner">Absolutely — our process is built around collaboration. We believe the best designs emerge from deep dialogue between client and designer. You will be involved at every major decision point: concept approval, material selections, furniture choices, and during site visits. We use a shared project portal where you can review, comment, and approve every item. Your space should feel unmistakably like you.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Do you offer sustainable or eco-conscious design options?
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="faq-answer-inner">Sustainability is embedded in how we work. We prioritise local craftsmanship, natural and low-toxicity materials, and suppliers with responsible sourcing practices. We actively advocate for locally manufactured furniture — supporting Kenyan and East African artisans — and favour durable materials over trend-driven choices that end up in landfill. If sustainability is a specific priority for you, simply let us know and we will build an eco-conscious brief from day one.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section-padding bg-accent text-accent-foreground text-center">
+            <div style="max-width:40rem; margin:0 auto; padding:0 1.5rem;">
+                <h2 class="font-display text-3xl md:text-4xl font-medium mb-6">Start your project today</h2>
+                <p class="font-body mb-10 text-base" style="color:hsla(var(--accent-foreground)/0.78); max-width:30rem; margin-left:auto; margin-right:auto;">Every great space begins with a conversation. Let's talk about yours — with no obligation whatsoever.</p>
+                <a href="contact.html" class="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-body text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm shadow-md">
+                    Book a Consultation
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-primary-foreground py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="brand-group">
+                        <span class="brand font-display text-2xl font-semibold tracking-tight text-primary-foreground">SILK &amp; STONE</span>
+                        <span class="brand-subheading-footer">DESIGN + BUILD</span>
+                    </a>
+                    <p class="font-body text-sm mt-6 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Boutique interior design studio crafting timeless spaces rooted in warmth, materiality, and the art of living well.</p>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Explore</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="index.html"     class="hover:text-primary-foreground transition-colors">Home</a></li>
+                        <li><a href="about.html"     class="hover:text-primary-foreground transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-primary-foreground transition-colors">Portfolio</a></li>
+                        <li><a href="services.html"  class="hover:text-primary-foreground transition-colors">Services</a></li>
+                        <li><a href="contact.html"   class="hover:text-primary-foreground transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Services</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Interior Design</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Space Planning</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Renovation &amp; Remodeling</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Furniture Selection</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Custom Millwork</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Design Consultation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Newsletter</h4>
+                    <p class="font-body text-sm mb-4 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Subscribe to receive our seasonal curation on architecture, materiality, and interiors.</p>
+                    <form id="newsletter-form" class="space-y-3">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 text-sm rounded-sm" style="background:hsla(var(--primary-foreground)/0.08); color:hsl(var(--primary-foreground)); border:1px solid hsla(var(--primary-foreground)/0.15); outline:none;">
+                        <button type="submit" class="w-full bg-accent text-accent-foreground px-6 py-3 font-body text-xs tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 font-body" style="border-top:1px solid hsla(var(--primary-foreground)/0.1); font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:hsla(var(--primary-foreground)/0.35);">
+                <p>© 2026 SILK &amp; STONE Interior Design. All rights reserved.</p>
+                <div style="display:flex; align-items:center; gap:0.5rem; color:hsla(var(--primary-foreground)/0.3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Thindigua, Kiambu / Nairobi, Kenya
+                </div>
+                <div class="flex gap-8">
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Privacy Policy</a>
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/254769260012" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    </a>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio &amp; Custom Furniture — SILK &amp; STONE | Interior Architecture in Nairobi &amp; East Africa</title>
+    <meta name="description" content="Explore bespoke interior architecture case studies and custom handcrafted furniture by SILK &amp; STONE — private residential villas, bespoke millwork, and luxury hospitality spaces across Nairobi and East Africa.">
+    <meta name="author" content="SILK &amp; STONE">
+    <link rel="canonical" href="https://silkandstone.design/portfolio">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        .page-hero {
+            height: 60vh;
+            min-height: 420px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        .page-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,18,16,0.78) 0%, rgba(20,18,16,0.25) 60%, transparent 100%); }
+        .page-hero-content { position: relative; z-index: 10; padding: 3.5rem 2rem; max-width: 80rem; width: 100%; margin: 0 auto; }
+
+        /* Project grid item - enhanced */
+        .project-card {
+            cursor: pointer;
+            overflow: hidden;
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 2px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(20, 18, 16, 0.12);
+            border-color: hsl(var(--accent));
+        }
+        .project-card-img-wrap {
+            position: relative;
+            overflow: hidden;
+            background: hsl(var(--secondary));
+        }
+        .project-card-img-wrap img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            display: block;
+        }
+        .project-card:hover .project-card-img-wrap img { transform: scale(1.04); }
+        .project-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: hsla(var(--primary) / 0.45);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+        .project-card:hover .project-card-overlay { opacity: 1; }
+        .view-btn {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.7);
+            padding: 0.8rem 1.8rem;
+            background: rgba(20, 18, 16, 0.35);
+            transition: all 0.25s ease;
+        }
+        .project-card:hover .view-btn { background: hsl(var(--accent)); border-color: hsl(var(--accent)); }
+        
+        .project-meta {
+            padding: 1.75rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 1.25rem;
+            border-top: 1px solid hsla(var(--border) / 0.6);
+        }
+        .project-tag {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: hsl(var(--muted-foreground));
+            background: hsl(var(--secondary));
+            padding: 0.3rem 0.65rem;
+            border-radius: 2px;
+        }
+
+        /* 2-col responsive grid */
+        .portfolio-grid-main {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+        @media (max-width: 900px) {
+            .portfolio-grid-main { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* Featured tall project */
+        .project-card.featured-hero {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+        }
+        .project-card.featured-hero .project-card-img-wrap img {
+            height: 100%;
+            min-height: 520px;
+        }
+        @media (max-width: 900px) {
+            .project-card.featured-hero { grid-template-columns: 1fr; }
+            .project-card.featured-hero .project-card-img-wrap img { min-height: 380px; }
+        }
+
+        /* Full-width project */
+        .project-card.full-width {
+            grid-column: 1 / -1;
+        }
+        .project-card.full-width .project-card-img-wrap img {
+            height: 480px;
+        }
+
+        /* Filter buttons */
+        .filter-btn {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.6rem 1.3rem;
+            border: 1px solid transparent;
+            background: transparent;
+            color: hsl(var(--muted-foreground));
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-radius: 2px;
+        }
+        .filter-btn:hover {
+            color: hsl(var(--foreground));
+            border-color: hsl(var(--border));
+        }
+        .filter-btn.active {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border-color: hsl(var(--primary));
+        }
+
+        /* Stats strip */
+        .portfolio-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: hsl(var(--secondary));
+            border-top: 1px solid hsl(var(--border));
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        @media (max-width: 767px) {
+            .portfolio-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+        .portfolio-stat {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-right: 1px solid hsl(var(--border));
+        }
+        .portfolio-stat:last-child { border-right: none; }
+        @media (max-width: 767px) {
+            .portfolio-stat:nth-child(2) { border-right: none; }
+            .portfolio-stat:nth-child(3), .portfolio-stat:nth-child(4) { border-top: 1px solid hsl(var(--border)); }
+        }
+
+        /* Custom Furniture Atelier Card */
+        .furniture-card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .furniture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(20, 18, 16, 0.12);
+            border-color: hsl(var(--accent));
+        }
+        .furniture-img-wrap {
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+            background: hsl(var(--secondary));
+        }
+        .furniture-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .furniture-card:hover .furniture-img-wrap img {
+            transform: scale(1.05);
+        }
+        .furniture-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .furniture-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            background: hsl(var(--background));
+            border: 1px solid hsla(var(--border) / 0.8);
+            padding: 1rem;
+            border-radius: 2px;
+            margin: 1.25rem 0;
+            font-size: 0.75rem;
+        }
+        .furniture-spec-item span:first-child {
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 2px;
+        }
+        .furniture-spec-item span:last-child {
+            font-weight: 500;
+            color: hsl(var(--foreground));
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased selection:bg-accent selection:text-white">
+
+    <!-- Header -->
+    <header class="site-header fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+            <a href="index.html" class="brand-group">
+                <span class="brand font-display text-2xl font-semibold tracking-tight text-foreground">SILK &amp; STONE</span>
+                <span class="brand-subheading">DESIGN + BUILD</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300 active">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Contact</a>
+            </nav>
+            <button class="md:hidden text-foreground bg-transparent border-none cursor-pointer p-2" aria-label="Toggle menu" id="menu-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+        <div id="mobile-nav" class="md:hidden bg-background border-b border-border hidden animate-fade-in">
+            <div class="flex flex-col px-6 py-6 gap-6">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase active">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- Page Hero -->
+        <div class="page-hero">
+            <img src="project-travertine-villa.jpg" alt="Featured interior architecture portfolio by SILK &amp; STONE">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <p class="font-body text-xs tracking-widest uppercase mb-3" style="color:hsl(var(--accent)); font-weight:600;">Commissions &amp; Atelier Archive</p>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-medium leading-tight" style="color:white; max-width:750px;">
+                    Spaces &amp; custom furniture sculpted with <em class="font-normal italic">tactile poetry</em>
+                </h1>
+            </div>
+        </div>
+
+        <!-- Portfolio Stats -->
+        <div class="portfolio-stats">
+            <div class="portfolio-stat">
+                <span style="font-family:var(--font-display); font-size:2.5rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1; margin-bottom:0.4rem;">25+</span>
+                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Projects Completed</span>
+            </div>
+            <div class="portfolio-stat">
+                <span style="font-family:var(--font-display); font-size:2.5rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1; margin-bottom:0.4rem;">2022</span>
+                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Established</span>
+            </div>
+            <div class="portfolio-stat">
+                <span style="font-family:var(--font-display); font-size:2.5rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1; margin-bottom:0.4rem;">80+</span>
+                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Custom Furniture Commissions</span>
+            </div>
+            <div class="portfolio-stat">
+                <span style="font-family:var(--font-display); font-size:2.5rem; font-weight:300; color:hsl(var(--accent)); display:block; line-height:1; margin-bottom:0.4rem;">8</span>
+                <span style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:hsl(var(--muted-foreground));">Team Members</span>
+            </div>
+        </div>
+
+        <!-- Portfolio Section -->
+        <section class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <!-- Intro + Filters -->
+            <div class="animate-fade-up mb-10">
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4">Curated Archive</p>
+                <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:2.5rem; align-items:end; margin-bottom:2.5rem;">
+                    <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground">Explore our landmark spaces &amp; bespoke creations</h2>
+                    <p class="font-body text-muted-foreground text-base leading-relaxed">Each commission represents a rigorous dialogue between client, topography, and tactile materiality — from complete architectural wings to single-edition bespoke furniture pieces.</p>
+                </div>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex gap-3 mb-12 flex-wrap items-center border-b border-border pb-4">
+                <button type="button" class="filter-btn active" data-filter="All" id="filter-all">All Works</button>
+                <button type="button" class="filter-btn" data-filter="Residential" id="filter-res">Residential</button>
+                <button type="button" class="filter-btn" data-filter="Commercial" id="filter-com">Commercial</button>
+                <button type="button" class="filter-btn" data-filter="Retail" id="filter-ret">Retail</button>
+                <button type="button" class="filter-btn" data-filter="Hospitality" id="filter-hosp">Hospitality &amp; Spa</button>
+                <button type="button" class="filter-btn" data-filter="Furniture" id="filter-furn" style="border-color:hsla(var(--accent)/0.3); color:hsl(var(--accent)); font-weight:600;">Custom Furniture</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid-main" id="portfolio-grid">
+                
+                <!-- Project 1 — FEATURED HERO CASE STUDY -->
+                <div class="project-card featured-hero portfolio-item" 
+                     data-category="Residential"
+                     data-tags="Residential,Furniture"
+                     data-location="Gigiri, Nairobi"
+                     data-year="2025"
+                     data-sqft="8,500 sq.ft Grand Open-Plan Residence"
+                     data-palette="Calacatta Marble with Inlaid Borders · Slate Navy Shaker Joinery · Pure White Lacquer · Floating Crystal Ring Chandeliers · Tufted Velvet"
+                     data-brief="Commissioned to design a unified, expansive open-plan grand floorplan for a premier private villa in Gigiri — seamlessly integrating a gourmet culinary suite, formal banqueting dining room, and fireside living lounge without visual division or disruption of architectural flow."
+                     data-solution="We orchestrated an uninterrupted 8,500 sq.ft open-concept pavilion defined by inlaid polished marble floors with dark perimeter borders, architectural coffered ceilings, and cascading crystal ring chandeliers. The space balances a bespoke slate-navy kitchen island with pure white perimeter cabinetry, an 8-seater dining salon beneath a crystal bar chandelier, and a formal living salon with tufted seating and classical wall mouldings.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-gigiri-villa-grand-open-plan.jpg" alt="The Travertine Villa Living Pavilion in Gigiri, Nairobi" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-accent font-semibold mb-2">Featured Case Study · Residential · Gigiri</p>
+                        <h3 class="font-display text-3xl font-medium text-foreground mb-3">The Travertine Villa Living Pavilion</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A unified 8,500 sq.ft grand open-plan pavilion in Gigiri. Polished marble floors with border inlays, custom slate-navy kitchen island, coffered ceilings with floating crystal ring chandeliers, formal dining salon, and fireside living lounge.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Grand Open-Plan</span>
+                            <span class="project-tag">Culinary Suite</span>
+                            <span class="project-tag">Crystal Chandeliers</span>
+                            <span class="project-tag">Marble Floor Inlay</span>
+                            <span class="project-tag">2025</span>
+                        </div>
+                        
+                        <!-- Project Perspectives Gallery Strip -->
+                        <div style="margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid hsl(var(--border));">
+                            <p class="font-body text-[11px] tracking-widest uppercase text-muted-foreground mb-2">Project Perspectives · 4 Views</p>
+                            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem;">
+                                <div style="position:relative; overflow:hidden; border-radius:2px; height:68px; border:1px solid hsl(var(--border)); cursor:pointer;" onclick="event.stopPropagation(); const modal=document.getElementById('lightbox-modal'); const img=document.getElementById('lightbox-img'); if(modal&&img){img.src='project-gigiri-villa-dining-culinary.jpg'; document.getElementById('lightbox-title').textContent='The Travertine Villa — Dining & Culinary Axis'; modal.classList.add('active');}">
+                                    <img src="project-gigiri-villa-dining-culinary.jpg" alt="Formal Dining & Island Axis" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+                                </div>
+                                <div style="position:relative; overflow:hidden; border-radius:2px; height:68px; border:1px solid hsl(var(--border)); cursor:pointer;" onclick="event.stopPropagation(); const modal=document.getElementById('lightbox-modal'); const img=document.getElementById('lightbox-img'); if(modal&&img){img.src='project-gigiri-villa-living-fireplace.jpg'; document.getElementById('lightbox-title').textContent='The Travertine Villa — Living Lounge & Fireplace'; modal.classList.add('active');}">
+                                    <img src="project-gigiri-villa-living-fireplace.jpg" alt="Living Lounge & Fireplace View" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+                                </div>
+                                <div style="position:relative; overflow:hidden; border-radius:2px; height:68px; border:1px solid hsl(var(--border)); cursor:pointer;" onclick="event.stopPropagation(); const modal=document.getElementById('lightbox-modal'); const img=document.getElementById('lightbox-img'); if(modal&&img){img.src='project-gigiri-villa-lounge-salon.jpg'; document.getElementById('lightbox-title').textContent='The Travertine Villa — Formal Salon & Mouldings'; modal.classList.add('active');}">
+                                    <img src="project-gigiri-villa-lounge-salon.jpg" alt="Formal Salon & Wall Mouldings" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Furniture Item 1 in Grid -->
+                <div class="project-card portfolio-item" 
+                     data-category="Furniture"
+                     data-tags="Furniture,Residential"
+                     data-location="Atelier Studio, Nairobi"
+                     data-year="2025"
+                     data-sqft="Sculptural Furniture Piece (1400L × 800W × 380H mm)"
+                     data-palette="Monolithic Italian Travertine · Matte Sealed · Honed Chamfer"
+                     data-brief="A client in Karen commissioned a monumental yet fluid center table for their minimalist living pavilion — an object that would read as ancient stone sculpture rather than conventional furniture."
+                     data-solution="Hand-carved from a single quarried block of Italian travertine, featuring organic bridge arches and pillowed contours that invite touch, finished with an invisible protective tactile matte sealant.">
+                    <div class="project-card-img-wrap">
+                        <img src="furniture-travertine-table.jpg" alt="The Monolith Travertine Cocktail Table" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">View Custom Piece</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-accent font-semibold mb-1">Custom Furniture · Limited Edition</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Monolith Travertine Cocktail Table</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Carved from a solid monolithic slab of honed travertine stone with soft sculpted contours and dual subterranean bridge legs. Hand-polished to a velvety tactile finish.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Solid Travertine</span>
+                            <span class="project-tag">Monolithic Carving</span>
+                            <span class="project-tag">Custom Dimensions</span>
+                            <span class="project-tag">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Furniture Item 2 in Grid -->
+                <div class="project-card portfolio-item" 
+                     data-category="Furniture"
+                     data-tags="Furniture,Residential,Commercial"
+                     data-location="Atelier Joinery, Nairobi"
+                     data-year="2024"
+                     data-sqft="Bespoke Credenza (2200L × 520D × 780H mm)"
+                     data-palette="Fluted American Walnut · Calacatta Viola Marble · Patinated Cast Bronze"
+                     data-brief="A private collector required an architectural media and dining sideboard featuring soft acoustic diffusion, curved corners to preserve room flow, and integrated concealed ventilation for AV equipment."
+                     data-solution="We fabricated rounded fluted walnut tambour end-caps, recessed bronze finger pulls, and topped the unit with a single slab of honed Calacatta Viola marble with brass edge inlays.">
+                    <div class="project-card-img-wrap">
+                        <img src="furniture-walnut-credenza.jpg" alt="The Rive Gauche Fluted Walnut Credenza" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">View Custom Piece</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-accent font-semibold mb-1">Custom Furniture · Architectural Millwork</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Rive Gauche Fluted Walnut Credenza</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Architectural sideboard handcrafted in solid fluted American walnut with radius curved ends, bookmatched Calacatta marble slab, and hand-cast bronze hardware.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Fluted Walnut</span>
+                            <span class="project-tag">Calacatta Marble</span>
+                            <span class="project-tag">Cast Bronze</span>
+                            <span class="project-tag">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Furniture Item 3 in Grid -->
+                <div class="project-card portfolio-item" 
+                     data-category="Furniture"
+                     data-tags="Furniture,Residential"
+                     data-location="Atelier Studio, Nairobi"
+                     data-year="2025"
+                     data-sqft="Sculptural Seating Pair (880W × 820D × 740H mm)"
+                     data-palette="Terracotta Mineral Bouclé · Seamless Molded Arch Core · Monolithic Bridge Legs"
+                     data-brief="Commissioned to sculpt an iconic pair of low-slung, architectural lounge armchairs for an open media and dining salon — pieces that function as standalone monolithic sculptures while offering deeply ergonomic, body-cradling comfort."
+                     data-solution="Engineered with continuous arching bridge legs wrapped seamlessly in tactile terracotta bouclé wool. The uninterrupted pillowed contours eliminate visible joints, creating an organic bridge silhouette that anchors open-plan spaces with warmth and sculptural gravity.">
+                    <div class="project-card-img-wrap">
+                        <img src="furniture-terracotta-bridge-chairs-angle.jpg" alt="The Sedona Terracotta Arch Sculptural Lounge Chairs" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">View Custom Piece</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-accent font-semibold mb-1">Custom Furniture · Limited Edition</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Sedona Terracotta Arch Lounge Chairs</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Sculptural low-slung lounge armchairs crafted in mineral terracotta bouclé. Defined by continuous arched bridge legs, floating ergonomic curves, and seamless monolithic tailoring.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Terracotta Bouclé</span>
+                            <span class="project-tag">Sculptural Seating</span>
+                            <span class="project-tag">Arch Silhouette</span>
+                            <span class="project-tag">2025</span>
+                        </div>
+                        
+                        <!-- Multi-Angle Furniture Strip -->
+                        <div style="margin-top:1.25rem; padding-top:1rem; border-top:1px solid hsl(var(--border));">
+                            <p class="font-body text-[11px] tracking-widest uppercase text-muted-foreground mb-2">Atelier Angles · 3 Perspectives</p>
+                            <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:0.5rem;">
+                                <div style="position:relative; overflow:hidden; border-radius:2px; height:60px; border:1px solid hsl(var(--border)); cursor:pointer;" onclick="event.stopPropagation(); const modal=document.getElementById('lightbox-modal'); const img=document.getElementById('lightbox-img'); if(modal&&img){img.src='furniture-terracotta-bridge-chairs-front.jpg'; document.getElementById('lightbox-title').textContent='The Sedona Chairs — Front Elevation & Salon View'; modal.classList.add('active');}">
+                                    <img src="furniture-terracotta-bridge-chairs-front.jpg" alt="Sedona Chairs Front Elevation" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+                                </div>
+                                <div style="position:relative; overflow:hidden; border-radius:2px; height:60px; border:1px solid hsl(var(--border)); cursor:pointer;" onclick="event.stopPropagation(); const modal=document.getElementById('lightbox-modal'); const img=document.getElementById('lightbox-img'); if(modal&&img){img.src='furniture-terracotta-bridge-chairs-cinema.jpg'; document.getElementById('lightbox-title').textContent='The Sedona Chairs — Media Salon Context'; modal.classList.add('active');}">
+                                    <img src="furniture-terracotta-bridge-chairs-cinema.jpg" alt="Sedona Chairs Media Salon View" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 — OBSIDIAN LOUNGE (Commercial / Hospitality) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Commercial"
+                     data-tags="Commercial,Hospitality"
+                     data-location="Westlands, Nairobi"
+                     data-year="2024"
+                     data-sqft="4,500 sq.ft Members Club"
+                     data-palette="Nero Marquina Marble · Fluted Walnut · Fluted Amber Glass · Emerald Velvet"
+                     data-brief="Create an exclusive, discreet evening lounge and cocktail salon for an international private members club seeking cinematic warmth, acoustic privacy, and Old-World European glamour."
+                     data-solution="We fabricated a curved bar counter wrapped in fluted American walnut capped with polished Nero Marquina marble, illuminated by a back-lit glowing brass liquor cabinet with reeded glass panels and emerald velvet banquette alcoves.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-obsidian-lounge.jpg" alt="The Obsidian Private Members Lounge in Westlands" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Commercial &middot; Hospitality &middot; Westlands</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Obsidian Lounge &amp; Bar</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A moody, sensual hospitality salon enveloped in custom fluted walnut paneling, amber-lit fluted glass, and a sculptural Nero Marquina marble cocktail bar.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Private Club</span>
+                            <span class="project-tag">Fluted Walnut</span>
+                            <span class="project-tag">Black Marble</span>
+                            <span class="project-tag">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 — ARTISAN CONCEPT STORE (Retail) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Retail"
+                     data-tags="Retail"
+                     data-location="Karen, Nairobi"
+                     data-year="2024"
+                     data-sqft="2,800 sq.ft Flagship Gallery"
+                     data-palette="Warm Microcement · Raw Hewn Stone Plinths · Brushed Brass · Belgian Linen"
+                     data-brief="The client commissioned an immersive retail boutique that transcends standard shopping — creating a meditative gallery atmosphere where slow fashion and ceramic sculpture are revered like museum exhibits."
+                     data-solution="We cast smooth microcement archways with concealed LED perimeter halo glows, monolithic hand-chiseled stone plinths for sculptural objects, and minimalist brushed brass hanging rails.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-artisan-concept.jpg" alt="Artisan Ceramic & Slow Fashion Concept Gallery in Karen" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Retail Flagship &middot; Karen, Nairobi</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">Artisan Concept &amp; Fashion Gallery</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A serene wabi-sabi retail concept celebrating raw materiality. Arched plaster display niches float over monolithic rough-hewn stone pedestals and raw brass fixtures.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Slow Fashion</span>
+                            <span class="project-tag">Stone Plinths</span>
+                            <span class="project-tag">Microcement</span>
+                            <span class="project-tag">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 — LAKESIDE WELLNESS SUITE (Hospitality & Spa) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Hospitality"
+                     data-tags="Hospitality,Commercial"
+                     data-location="Lake Naivasha, Rift Valley"
+                     data-year="2025"
+                     data-sqft="1,800 sq.ft Private Spa Wing"
+                     data-palette="Raw Volcanic Basalt · Hinoki Cedar · Honed Slate · Champagne Brass"
+                     data-brief="Design a private bathhouse and wellness suite for a luxury eco-resort that immerses guests in the raw volcanic geology and misty tranquil waters of Lake Naivasha."
+                     data-solution="We erected a dramatic volcanic basalt dry-stone wall with natural moss integration, paired with a sunken Hinoki cedar onsen tub overlooking the lake through frameless structural glazing.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-lakeside-wellness.jpg" alt="Lake Naivasha Hinoki Cedar & Volcanic Stone Spa" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Hospitality &middot; Lake Naivasha</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">Lake Naivasha Wellness Suite</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">An organic spa sanctuary carved against a volcanic stone wall, featuring a sunken cedar soaking tub and frameless vistas of morning lake mist.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Eco-Luxury</span>
+                            <span class="project-tag">Cedar Onsen</span>
+                            <span class="project-tag">Volcanic Stone</span>
+                            <span class="project-tag">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 — THE SMOKED OAK DRESSING SALON (Residential / Millwork) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Residential"
+                     data-tags="Residential,Furniture"
+                     data-location="Muthaiga, Nairobi"
+                     data-year="2025"
+                     data-sqft="850 sq.ft Master Dressing Suite"
+                     data-palette="Fumed Smoked Oak · Smoked Bronze Glass · Calacatta Marble · Brushed Bronze · Bouclé Velvet"
+                     data-brief="The client commissioned a boutique-inspired walk-in dressing suite with museum-grade garment illumination and bespoke storage tailored for haute couture and fine accessories."
+                     data-solution="Custom floor-to-ceiling smoked-oak cabinetry with anodized bronze profiles and smoked glass doors. An architectural island with fluted dark oak drawers is topped by a honed Calacatta marble slab, accented by integrated 2700K perimeter LED lighting and a button-tufted velvet bench.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-smoked-oak-wardrobe.jpg" alt="The Smoked Oak &amp; Calacatta Dressing Salon in Muthaiga" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential &middot; Master Dressing Suite &middot; Muthaiga</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Smoked Oak &amp; Calacatta Dressing Salon</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A master walk-in dressing gallery enveloped in smoked oak joinery, bronzed glass vitrines, and a central Calacatta marble-topped island with integrated ambient LED lighting.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Bespoke Wardrobe</span>
+                            <span class="project-tag">Smoked Glass</span>
+                            <span class="project-tag">Calacatta Island</span>
+                            <span class="project-tag">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 — THE SAGE & CALACATTA CULINARY SUITE (Residential / Millwork) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Residential"
+                     data-tags="Residential,Furniture"
+                     data-location="Thindigua Ridge, Kiambu"
+                     data-year="2025"
+                     data-sqft="1,150 sq.ft Open Culinary Suite"
+                     data-palette="Honed Calacatta Marble · Muted Sage Shaker Cabinetry · American Walnut · Herringbone White Oak · Unlacquered Brass"
+                     data-brief="The homeowners sought a light-filled, open-concept culinary salon that merged European transitional elegance with serious gourmet performance and relaxed family gathering."
+                     data-solution="We designed bespoke shaker cabinetry in a velvety muted sage tone, paired with a monolithic Calacatta marble waterfall island and integrated solid walnut breakfast bar. Accented with brass multi-globe pendant lighting, illuminated glass display vitrines, and herringbone European white oak floors.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-sage-kitchen.jpg" alt="The Sage &amp; Calacatta Culinary Suite in Thindigua, Kiambu" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential &middot; Bespoke Kitchen &middot; Thindigua, Kiambu</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Sage &amp; Calacatta Culinary Suite</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">European transitional elegance meets artisanal joinery — featuring muted sage shaker cabinetry, a waterfall Calacatta marble island, integrated walnut breakfast table, and herringbone parquet oak floors.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Sage Cabinetry</span>
+                            <span class="project-tag">Calacatta Island</span>
+                            <span class="project-tag">Herringbone Parquet</span>
+                            <span class="project-tag">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7 — EXECUTIVE LAW CHAMBERS (Commercial) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Commercial"
+                     data-tags="Commercial,Furniture"
+                     data-location="Westlands, Nairobi"
+                     data-year="2023"
+                     data-sqft="3,100 sq.ft Executive Floor"
+                     data-palette="Quarter-sawn Walnut · Saddle Leather · Patinated Bronze · Acoustic Felt"
+                     data-brief="Transform the executive floor of a prominent regional legal practice into a quiet, prestigious environment balancing rigorous privacy with modern understated luxury."
+                     data-solution="Custom walnut wall paneling with acoustic concealed baffles, a 20-foot leather boardroom conference table with integrated hidden technology, and ambient museum-grade art illumination.">
+                    <div class="project-card-img-wrap">
+                        <img src="portfolio-office.jpg" alt="Executive Study in Westlands" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Commercial &middot; Westlands, Nairobi</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">Executive Law Chambers &amp; Study</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A prestigious workspace designed for deep focus and quiet authority — panelling in quarter-sawn walnut, bespoke built-in library, and custom saddle leather desks.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Executive Suite</span>
+                            <span class="project-tag">Walnut Panelling</span>
+                            <span class="project-tag">Custom Library</span>
+                            <span class="project-tag">2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8 — CALACATTA & FLUTED MARBLE POWDER ROOM (Residential) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Residential"
+                     data-tags="Residential"
+                     data-location="Runda, Nairobi"
+                     data-year="2024"
+                     data-sqft="420 sq.ft Primary Powder Suite"
+                     data-palette="Bookmatched Calacatta Marble · Fluted Wall-Hung Vanity · Brushed Brass · Ambient Halo Glow"
+                     data-brief="Deliver an intimate, jewel-box powder room that makes a bold architectural statement with bookmatched natural stone while maintaining a serene, spa-like lightness."
+                     data-solution="Full-height bookmatched Italian Calacatta marble slabs line the walls, anchoring a floating curved vanity with vertical fluted detailing. Twin matte vessel basins, cylindrical brass ring pendants, and an arched backlit mirror complete the sculptural sanctuary.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-calacatta-powder-room.jpg" alt="The Calacatta &amp; Fluted Marble Powder Room in Runda" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential &middot; Luxury Ensuite &middot; Runda, Nairobi</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Calacatta &amp; Fluted Marble Powder Room</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A sculptural powder suite wrapped in floor-to-ceiling bookmatched Calacatta marble, featuring a curved fluted floating vanity, twin vessel basins, and warm halo lighting.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Calacatta Marble</span>
+                            <span class="project-tag">Fluted Vanity</span>
+                            <span class="project-tag">Brass Pendants</span>
+                            <span class="project-tag">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9 — THE GRAND WALNUT DRESSING & SHOE GALLERY (Residential / Furniture) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Residential"
+                     data-tags="Residential,Furniture"
+                     data-location="Kitisuru, Nairobi"
+                     data-year="2024"
+                     data-sqft="1,250 sq.ft Luxury Dressing Suite"
+                     data-palette="Solid American Walnut · Tiered Bronze Chandelier · Backlit Shoe Vitrines · Velvet Upholstery"
+                     data-brief="Design an expansive, dual-wing dressing gallery inspired by Parisian couture salons, featuring dedicated backlit display vitrines for an extensive shoe and accessory collection."
+                     data-solution="Handcrafted in rich, bookmatched American walnut with classic shaker frame profiles. Features an illuminated, angled shoe gallery wall, dual-sided central drawer island with custom jewelry organizers, coffered ceiling cove lighting, and a sculptural bronze chandelier.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-walnut-walkin-closet.jpg" alt="The Grand Walnut Dressing &amp; Shoe Gallery in Kitisuru" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential &middot; Custom Millwork &middot; Kitisuru, Nairobi</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Grand Walnut Dressing &amp; Shoe Gallery</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A bespoke dressing salon handcrafted in rich American walnut, featuring an illuminated floor-to-ceiling shoe gallery wall, central dresser island, and a bronze tiered chandelier.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">American Walnut</span>
+                            <span class="project-tag">Shoe Gallery</span>
+                            <span class="project-tag">Bronze Chandelier</span>
+                            <span class="project-tag">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10 — THE NYERI HIGHLAND VILLA & GRAND SALON (Full Width Featured Case Study) -->
+                <div class="project-card full-width portfolio-item" 
+                     data-category="Residential"
+                     data-tags="Residential,Furniture"
+                     data-location="Nyeri, Mount Kenya"
+                     data-year="2025"
+                     data-sqft="6,800 sq.ft Highland Villa"
+                     data-palette="Tiered Calacatta Marble · Caramel Saddle Leather · Sculptural Bronze Ribbon Chandelier · Cantilevered Floating Staircase · Bleached Oak Vitrines"
+                     data-brief="Commissioned to design an expansive, contemporary living salon for an executive country residence in Nyeri, set against the scenic Mount Kenya highlands — crafting an atmosphere of serene grandeur, multi-zone entertaining, and architectural light."
+                     data-solution="We orchestrated an open-concept salon anchored by facing plush velvet sectionals, butterscotch saddle leather tub chairs, and tri-level nesting marble cocktail tables. The architectural narrative integrates a floating cantilevered marble staircase with illuminated risers, a floor-to-ceiling backlit wine vitrine, and a signature sculptural looping ribbon chandelier.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-nyeri-living-salon.jpg" alt="The Nyeri Highland Villa Living Salon in Nyeri, Kenya" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta" style="display:grid; grid-template-columns:1.2fr 1fr; gap:2.5rem; align-items:start;">
+                        <div>
+                            <p class="font-body text-xs tracking-widest uppercase text-accent font-semibold mb-1">Featured Villa Case Study &middot; Residential &middot; Nyeri</p>
+                            <h3 class="font-display text-3xl font-medium text-foreground mb-3">The Nyeri Highland Villa &amp; Grand Living Salon</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Highland Villa</span>
+                                <span class="project-tag">Caramel Leather</span>
+                                <span class="project-tag">Floating Staircase</span>
+                                <span class="project-tag">Wine Vitrine</span>
+                                <span class="project-tag">2025</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Set against the lush foothills of Mount Kenya in Nyeri, this multi-generational living salon pairs organic warmth with sculptural modernity. Features a custom bronze ribbon chandelier, illuminated cantilevered marble staircase, and a bespoke glass wine gallery.</p>
+                            <p class="font-body text-xs tracking-widest uppercase text-muted-foreground">Architectural Millwork &amp; Turnkey Interior Execution &middot; Nyeri, Kenya</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 11 — THE NYERI VILLA STAIRCASE & ENTERTAINMENT GALLERY -->
+                <div class="project-card portfolio-item" 
+                     data-category="Residential"
+                     data-tags="Residential,Furniture"
+                     data-location="Nyeri, Mount Kenya"
+                     data-year="2025"
+                     data-sqft="Floating Cantilevered Staircase & Entertainment Gallery"
+                     data-palette="Calacatta Marble Treads · Structural Glass · Bleached Oak · Fluted Console"
+                     data-brief="Design a fluid architectural transition between the formal salon and upper gallery, incorporating concealed media integration, art plinths, and bespoke back-of-sofa console styling."
+                     data-solution="We engineered a floating cantilevered staircase with concealed under-tread LED wash, framed by frameless structural glass and complemented by an illuminated bleached oak display bookcase and custom pill-shaped marble console table.">
+                    <div class="project-card-img-wrap">
+                        <img src="project-nyeri-entertainment-staircase.jpg" alt="The Nyeri Villa Entertainment Wall &amp; Floating Staircase" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Residential &middot; Architectural Staircase &middot; Nyeri</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">The Nyeri Villa Staircase Gallery</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">Floating marble stair treads with integrated warm LED illumination, seamless glass balustrades, and a tailored media wall framed by floor-to-ceiling bleached oak joinery.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Floating Staircase</span>
+                            <span class="project-tag">Oak Bookcase</span>
+                            <span class="project-tag">Console Table</span>
+                            <span class="project-tag">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 12 — CURATED FASHION SHOWROOM (Retail) -->
+                <div class="project-card portfolio-item" 
+                     data-category="Retail"
+                     data-tags="Retail"
+                     data-location="Village Market, Nairobi"
+                     data-year="2022"
+                     data-sqft="3,400 sq.ft Luxury Flagship"
+                     data-palette="Textured Ivory Plaster · Floating Display Plinths · Recessed LED Light Paths"
+                     data-brief="Re-imagine luxury retail as an artful, uncluttered gallery experience that elongates customer dwell time and enhances perceived brand exclusivity."
+                     data-solution="Curved floating display pedestals, directional museum-grade track optics, and private VIP dressing salons swathed in acoustic bouclé fabric. Featured in Elle Décor Africa.">
+                    <div class="project-card-img-wrap">
+                        <img src="portfolio-retail.jpg" alt="Curated Luxury Boutique Showroom in Village Market" loading="lazy">
+                        <div class="project-card-overlay"><span class="view-btn">Read Case Study</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Retail Flagship &middot; Village Market, Nairobi</p>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-2">Curated Fashion &amp; Design Showroom</h3>
+                        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">A luxury retail flagship designed to elevate customer dwell time and appreciation of artisanal craft with floating stone display plinths and plaster niches.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Flagship Boutique</span>
+                            <span class="project-tag">Architectural Display</span>
+                            <span class="project-tag">VIP Salons</span>
+                            <span class="project-tag">2022</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════ DEDICATED ATELIER CUSTOM FURNITURE SECTION ═══════════ -->
+        <section class="section-padding bg-secondary" id="custom-furniture">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="animate-fade-up max-w-3xl mb-16">
+                    <p class="font-body text-xs tracking-widest uppercase text-accent font-semibold mb-3">The Atelier Collection</p>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-foreground mb-6 leading-tight">
+                        Bespoke Furniture &amp; <em class="font-normal italic">Architectural Millwork</em>
+                    </h2>
+                    <p class="font-body text-muted-foreground text-base leading-relaxed">
+                        We believe exceptional spaces cannot rely entirely on catalog furnishings. Our private furniture atelier designs limited-edition and one-of-a-kind pieces crafted from solid stone blocks, rare timber slabs, hand-patinated bronze, and tactile natural textiles. Every piece is tailored specifically to your home’s architecture.
+                    </p>
+                </div>
+
+                <!-- Furniture Cards Showcase Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    
+                    <!-- Piece 1 -->
+                    <div class="furniture-card">
+                        <div class="furniture-img-wrap">
+                            <img src="furniture-travertine-table.jpg" alt="The Monolith Travertine Cocktail Table" loading="lazy">
+                        </div>
+                        <div class="furniture-body">
+                            <span class="font-body text-xs tracking-widest uppercase text-accent font-semibold">Limited Studio Edition</span>
+                            <h3 class="font-display text-2xl font-medium text-foreground mt-1 mb-2">The Monolith Travertine Table</h3>
+                            <p class="font-body text-sm text-muted-foreground leading-relaxed">
+                                Carved from a monolithic block of honed Italian travertine. Soft, organic contours soften the stone’s monumental weight, creating an arched bridge silhouette that balances negative space with enduring permanence.
+                            </p>
+                            <div class="furniture-specs">
+                                <div class="furniture-spec-item">
+                                    <span>Material</span>
+                                    <span>Honed Travertine</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Dimensions</span>
+                                    <span>1400L × 800W × 380H mm</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Finish</span>
+                                    <span>Tactile Matte Seal</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Lead Time</span>
+                                    <span>6–8 Weeks Made to Order</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-4 flex justify-between items-center">
+                                <span class="font-body text-xs font-semibold uppercase tracking-wider text-muted-foreground">Custom Dimensions Available</span>
+                                <a href="contact.html?project=The+Monolith+Travertine+Table" class="font-body text-xs tracking-widest uppercase font-semibold text-accent hover:opacity-80 transition-opacity">Commission Piece &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Piece 2 -->
+                    <div class="furniture-card">
+                        <div class="furniture-img-wrap">
+                            <img src="furniture-walnut-credenza.jpg" alt="The Rive Gauche Fluted Walnut Credenza" loading="lazy">
+                        </div>
+                        <div class="furniture-body">
+                            <span class="font-body text-xs tracking-widest uppercase text-accent font-semibold">Bespoke Millwork</span>
+                            <h3 class="font-display text-2xl font-medium text-foreground mt-1 mb-2">Rive Gauche Walnut Credenza</h3>
+                            <p class="font-body text-sm text-muted-foreground leading-relaxed">
+                                Hand-milled American black walnut with subtle acoustic vertical fluting and rounded pill-end radius corners. Topped with a single bookmatched Calacatta Viola marble slab and custom hand-cast bronze hardware.
+                            </p>
+                            <div class="furniture-specs">
+                                <div class="furniture-spec-item">
+                                    <span>Timber</span>
+                                    <span>American Walnut</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Top Stone</span>
+                                    <span>Calacatta Viola</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Hardware</span>
+                                    <span>Patinated Cast Bronze</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Dimensions</span>
+                                    <span>2200L × 520D × 780H mm</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-4 flex justify-between items-center">
+                                <span class="font-body text-xs font-semibold uppercase tracking-wider text-muted-foreground">AV / Dining Spec Available</span>
+                                <a href="contact.html?project=Rive+Gauche+Walnut+Credenza" class="font-body text-xs tracking-widest uppercase font-semibold text-accent hover:opacity-80 transition-opacity">Commission Piece &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Piece 3 -->
+                    <div class="furniture-card">
+                        <div class="furniture-img-wrap">
+                            <img src="furniture-terracotta-bridge-chairs-angle.jpg" alt="The Sedona Terracotta Arch Lounge Chairs" loading="lazy">
+                        </div>
+                        <div class="furniture-body">
+                            <span class="font-body text-xs tracking-widest uppercase text-accent font-semibold">Limited Studio Edition</span>
+                            <h3 class="font-display text-2xl font-medium text-foreground mt-1 mb-2">The Sedona Terracotta Arch Chairs</h3>
+                            <p class="font-body text-sm text-muted-foreground leading-relaxed">
+                                Architectural low-profile lounge armchairs sculpted in tactile terracotta mineral bouclé. Defined by continuous arching bridge legs, ergonomic contoured backrests, and seamless monolithic tailoring.
+                            </p>
+                            <div class="furniture-specs">
+                                <div class="furniture-spec-item">
+                                    <span>Material</span>
+                                    <span>Terracotta Bouclé</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Core</span>
+                                    <span>Injected Foam &amp; Steel</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Dimensions</span>
+                                    <span>880W × 820D × 740H mm</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Seat Height</span>
+                                    <span>420mm (Low Slung)</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Lead Time</span>
+                                    <span>6–8 Weeks Made to Order</span>
+                                </div>
+                                <div class="furniture-spec-item">
+                                    <span>Edition</span>
+                                    <span>Bespoke Pair</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-4 flex justify-between items-center">
+                                <span class="font-body text-xs font-semibold uppercase tracking-wider text-muted-foreground">Custom Upholstery Available</span>
+                                <a href="contact.html?project=The+Sedona+Terracotta+Arch+Chairs" class="font-body text-xs tracking-widest uppercase font-semibold text-accent hover:opacity-80 transition-opacity">Commission Piece &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Atelier Artisan Quality Strip -->
+                <div style="background:hsl(var(--card)); border:1px solid hsl(var(--border)); border-radius:2px; padding:3rem 2.5rem;">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div>
+                            <span style="font-family:var(--font-display); font-size:1.75rem; color:hsl(var(--accent)); font-weight:400; display:block; margin-bottom:0.5rem;">01. Timber Sourcing</span>
+                            <h4 class="font-body text-xs tracking-widest uppercase font-semibold text-foreground mb-2">Ethical Solid Hardwoods</h4>
+                            <p class="font-body text-xs text-muted-foreground leading-relaxed">We harvest zero fresh native forest trees. All timber is sustainably salvaged, FSC certified, or reclaimed aged stock seasoned for stability.</p>
+                        </div>
+                        <div>
+                            <span style="font-family:var(--font-display); font-size:1.75rem; color:hsl(var(--accent)); font-weight:400; display:block; margin-bottom:0.5rem;">02. Quarry Selection</span>
+                            <h4 class="font-body text-xs tracking-widest uppercase font-semibold text-foreground mb-2">Single-Block Extraction</h4>
+                            <p class="font-body text-xs text-muted-foreground leading-relaxed">Travertine, limestone, and volcanic basalt blocks are individually selected at source to guarantee continuous vein matching and structural integrity.</p>
+                        </div>
+                        <div>
+                            <span style="font-family:var(--font-display); font-size:1.75rem; color:hsl(var(--accent)); font-weight:400; display:block; margin-bottom:0.5rem;">03. Hand Craftsmanship</span>
+                            <h4 class="font-body text-xs tracking-widest uppercase font-semibold text-foreground mb-2">Artisan Guild Collaboration</h4>
+                            <p class="font-body text-xs text-muted-foreground leading-relaxed">Partnering with third-generation joiners and metalworkers across Kenya and Europe. Traditional mortise-and-tenon joints and hand-rubbed finishes.</p>
+                        </div>
+                        <div>
+                            <span style="font-family:var(--font-display); font-size:1.75rem; color:hsl(var(--accent)); font-weight:400; display:block; margin-bottom:0.5rem;">04. Archival Provenance</span>
+                            <h4 class="font-body text-xs tracking-widest uppercase font-semibold text-foreground mb-2">Numbered Studio Editions</h4>
+                            <p class="font-body text-xs text-muted-foreground leading-relaxed">Each custom furniture commission is engraved with its individual atelier serial number and accompanied by an archival certificate of authenticity.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Approach statement -->
+        <section class="section-padding bg-primary text-primary-foreground">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+                    <div>
+                        <p class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.5);">Our Approach</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-medium mb-8" style="color:hsl(var(--primary-foreground));">
+                            Every project begins with <em class="font-normal italic">deep listening &amp; materiality</em>
+                        </h2>
+                        <p class="font-body leading-relaxed mb-6" style="color:hsla(var(--primary-foreground)/0.7); font-size:1rem;">
+                            We don't apply a formulaic signature to every commission. Each space and furniture object is a tailored response to our client's rituals, their heritage, and the specific orientation of natural light. This is why no two SILK &amp; STONE environments are ever identical.
+                        </p>
+                        <a href="contact.html" class="inline-flex items-center gap-2 font-body text-sm tracking-widest uppercase hover:opacity-70 transition-opacity" style="color:hsl(var(--accent));">
+                            Commission A Private Project &rarr;
+                        </a>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+                        <div style="background:hsla(var(--primary-foreground)/0.06); padding:2rem; border:1px solid hsla(var(--primary-foreground)/0.12);">
+                            <h4 class="font-display text-lg font-medium mb-2" style="color:hsl(var(--accent));">Residential</h4>
+                            <p class="font-body text-sm leading-relaxed" style="color:hsla(var(--primary-foreground)/0.6);">Private country estates, contemporary urban villas, and heritage penthouses.</p>
+                        </div>
+                        <div style="background:hsla(var(--primary-foreground)/0.06); padding:2rem; border:1px solid hsla(var(--primary-foreground)/0.12);">
+                            <h4 class="font-display text-lg font-medium mb-2" style="color:hsl(var(--accent));">Custom Furniture</h4>
+                            <p class="font-body text-sm leading-relaxed" style="color:hsla(var(--primary-foreground)/0.6);">Monolithic stone tables, fluted walnut credenzas, and bespoke millwork suites.</p>
+                        </div>
+                        <div style="background:hsla(var(--primary-foreground)/0.06); padding:2rem; border:1px solid hsla(var(--primary-foreground)/0.12);">
+                            <h4 class="font-display text-lg font-medium mb-2" style="color:hsl(var(--accent));">Retail &amp; Flagship</h4>
+                            <p class="font-body text-sm leading-relaxed" style="color:hsla(var(--primary-foreground)/0.6);">Slow fashion boutiques, jewelry galleries, and artisan flagship showrooms.</p>
+                        </div>
+                        <div style="background:hsla(var(--primary-foreground)/0.06); padding:2rem; border:1px solid hsla(var(--primary-foreground)/0.12);">
+                            <h4 class="font-display text-lg font-medium mb-2" style="color:hsl(var(--accent));">Hospitality &amp; Spa</h4>
+                            <p class="font-body text-sm leading-relaxed" style="color:hsla(var(--primary-foreground)/0.6);">Private members clubs, cocktail lounges, and contemplative thermal bathhouses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section-padding bg-accent text-accent-foreground text-center">
+            <div style="max-width:40rem; margin:0 auto; padding:0 1.5rem;">
+                <h2 class="font-display text-3xl md:text-4xl font-medium mb-6">Ready to bring your space to life?</h2>
+                <p class="font-body mb-10 text-base" style="color:hsla(var(--accent-foreground)/0.78);">From comprehensive spatial architecture to custom one-of-a-kind furniture commissions, we craft every detail with uncompromising care.</p>
+                <a href="contact.html" class="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-body text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm shadow-md">
+                    Schedule Studio Consultation
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fullscreen Architectural Case Study Modal -->
+    <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Project Case Study">
+        <div class="lightbox-content" style="max-width:980px;">
+            <button id="lightbox-close" class="lightbox-close" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            
+            <div style="position:relative; width:100%; height:460px; overflow:hidden; background:#1a1613;">
+                <img id="lightbox-img" src="" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,18,16,0.85) 0%, rgba(20,18,16,0.2) 60%, transparent 100%); pointer-events:none;"></div>
+                <div style="position:absolute; bottom:2rem; left:2.5rem; right:2.5rem; display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div>
+                        <span id="lightbox-category" style="font-family:var(--font-body); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:hsl(var(--accent)); font-weight:600; display:block; margin-bottom:0.35rem;"></span>
+                        <h3 id="lightbox-title" style="font-family:var(--font-display); font-size:clamp(1.75rem, 3.5vw, 2.5rem); color:white; margin:0; line-height:1.2;"></h3>
+                    </div>
+                    <span id="lightbox-year" style="font-family:var(--font-display); font-size:1.5rem; font-style:italic; color:rgba(255,255,255,0.7);"></span>
+                </div>
+            </div>
+
+            <div style="padding:2.5rem 3rem 3rem;">
+                <!-- Architectural Specs Grid -->
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1.5rem; padding:1.25rem 1.75rem; background:hsl(var(--card)); border:1px solid hsl(var(--border)); border-radius:2px; margin-bottom:2rem;">
+                    <div>
+                        <span style="display:block; font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:hsl(var(--muted-foreground)); margin-bottom:0.25rem;">Location</span>
+                        <span id="lightbox-location" style="font-family:var(--font-body); font-size:0.875rem; font-weight:500; color:hsl(var(--foreground));"></span>
+                    </div>
+                    <div>
+                        <span style="display:block; font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:hsl(var(--muted-foreground)); margin-bottom:0.25rem;">Typology &amp; Scale</span>
+                        <span id="lightbox-sqft" style="font-family:var(--font-body); font-size:0.875rem; font-weight:500; color:hsl(var(--foreground));"></span>
+                    </div>
+                    <div>
+                        <span style="display:block; font-family:var(--font-body); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:hsl(var(--muted-foreground)); margin-bottom:0.25rem;">Tactile Palette</span>
+                        <span id="lightbox-palette" style="font-family:var(--font-body); font-size:0.875rem; font-weight:500; color:hsl(var(--foreground));"></span>
+                    </div>
+                </div>
+
+                <!-- Case Study Narrative -->
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; margin-bottom:2.5rem;">
+                    <div>
+                        <h4 style="font-family:var(--font-body); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:hsl(var(--accent)); margin-bottom:0.75rem; font-weight:600;">The Commission Brief &amp; Vision</h4>
+                        <p id="lightbox-brief" style="font-family:var(--font-body); font-size:0.92rem; line-height:1.75; color:hsl(var(--muted-foreground)); margin:0;"></p>
+                    </div>
+                    <div>
+                        <h4 style="font-family:var(--font-body); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:hsl(var(--accent)); margin-bottom:0.75rem; font-weight:600;">Architectural Response &amp; Detailing</h4>
+                        <p id="lightbox-solution" style="font-family:var(--font-body); font-size:0.92rem; line-height:1.75; color:hsl(var(--muted-foreground)); margin:0;"></p>
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem; border-top:1px solid hsl(var(--border)); padding-top:1.75rem;">
+                    <div>
+                        <p style="font-family:var(--font-body); font-size:0.82rem; color:hsl(var(--muted-foreground)); margin:0;">Envisioning a similar interior or bespoke piece for your residence?</p>
+                    </div>
+                    <a id="lightbox-inquire-btn" href="contact.html" style="display:inline-flex; align-items:center; gap:0.6rem; background:hsl(var(--accent)); color:hsl(var(--accent-foreground)); padding:0.85rem 1.85rem; border-radius:2px; font-family:var(--font-body); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; text-decoration:none; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                        <span>Inquire About This Commission</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-primary-foreground py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="brand-group">
+                        <span class="brand font-display text-2xl font-semibold tracking-tight text-primary-foreground">SILK &amp; STONE</span>
+                        <span class="brand-subheading-footer">DESIGN + BUILD</span>
+                    </a>
+                    <p class="font-body text-sm mt-6 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Boutique interior design and architecture studio crafting timeless spaces rooted in warmth, materiality, and the art of living well.</p>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Explore</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="index.html"     class="hover:text-primary-foreground transition-colors">Home</a></li>
+                        <li><a href="about.html"     class="hover:text-primary-foreground transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-primary-foreground transition-colors">Portfolio</a></li>
+                        <li><a href="services.html"  class="hover:text-primary-foreground transition-colors">Services</a></li>
+                        <li><a href="contact.html"   class="hover:text-primary-foreground transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Services</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Interior Architecture</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Space Planning</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Custom Millwork &amp; Furniture</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Furniture Selection</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Turnkey Project Execution</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Newsletter</h4>
+                    <p class="font-body text-sm mb-4 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Subscribe to receive our seasonal curation on architecture, materiality, and interiors.</p>
+                    <form id="newsletter-form" class="space-y-3">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 text-sm rounded-sm" style="background:hsla(var(--primary-foreground)/0.08); color:hsl(var(--primary-foreground)); border:1px solid hsla(var(--primary-foreground)/0.15); outline:none;">
+                        <button type="submit" class="w-full bg-accent text-accent-foreground px-6 py-3 font-body text-xs tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 font-body" style="border-top:1px solid hsla(var(--primary-foreground)/0.1); font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:hsla(var(--primary-foreground)/0.35);">
+                <p>&copy; 2026 SILK &amp; STONE Interior Design. All rights reserved.</p>
+                <div style="display:flex; align-items:center; gap:0.5rem; color:hsla(var(--primary-foreground)/0.3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Thindigua, Kiambu / Nairobi, Kenya
+                </div>
+                <div class="flex gap-8">
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Privacy Policy</a>
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/254769260012" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    </a>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

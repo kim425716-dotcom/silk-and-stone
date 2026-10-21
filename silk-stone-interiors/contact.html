@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — SILK &amp; STONE | Book a Consultation in Nairobi, Kenya</title>
+    <meta name="description" content="Reach out to SILK &amp; STONE to book a complimentary design consultation. We serve clients in Nairobi, Kenya and across East Africa for residential, commercial, and retail interior design projects.">
+    <meta name="author" content="SILK &amp; STONE">
+    <link rel="canonical" href="https://silkandstone.design/contact">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Page intro banner */
+        .contact-hero {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            padding: 6rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: hsla(var(--accent) / 0.08);
+            pointer-events: none;
+        }
+        .contact-hero-inner {
+            max-width: 80rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: end;
+            position: relative;
+            z-index: 1;
+        }
+        @media (max-width: 767px) {
+            .contact-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+        }
+        /* Info cards */
+        .info-card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            padding: 2rem;
+            border-radius: 2px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .info-card:hover {
+            border-color: hsl(var(--accent));
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .info-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: hsla(var(--accent) / 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: hsl(var(--accent));
+            margin-bottom: 1.25rem;
+        }
+        /* Form Styling */
+        .input-luxury {
+            width: 100%;
+            background: hsl(var(--background));
+            border: 1px solid hsl(var(--border));
+            padding: 0.875rem 1rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: hsl(var(--foreground));
+            border-radius: 2px;
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            display: block;
+        }
+        .input-luxury:focus {
+            border-color: hsl(var(--accent));
+            box-shadow: 0 0 0 3px hsla(var(--accent) / 0.1);
+        }
+        .input-luxury::placeholder {
+            color: hsl(var(--muted-foreground));
+            opacity: 0.6;
+        }
+        select.input-luxury {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        /* Steps strip */
+        .steps-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: hsl(var(--secondary));
+            border-top: 1px solid hsl(var(--border));
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        @media (max-width: 767px) {
+            .steps-strip { grid-template-columns: 1fr; }
+        }
+        .step-item {
+            padding: 3rem 2.5rem;
+            border-right: 1px solid hsl(var(--border));
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        .step-item:last-child { border-right: none; }
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: hsl(var(--accent));
+            opacity: 0.4;
+            line-height: 1;
+            min-width: 2.5rem;
+        }
+        /* Why us */
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: hsl(var(--border));
+        }
+        @media (max-width: 767px) {
+            .why-grid { grid-template-columns: 1fr; }
+        }
+        .why-item {
+            background: hsl(var(--background));
+            padding: 3rem 2.5rem;
+        }
+        .why-item:nth-child(even) { background: hsl(var(--card)); }
+        /* Social icons */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: hsl(var(--muted-foreground));
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .social-link:hover { color: hsl(var(--accent)); }
+        /* Map wrapper */
+        .map-wrapper {
+            border: 1px solid hsl(var(--border));
+            overflow: hidden;
+            border-radius: 2px;
+            filter: grayscale(35%);
+            transition: filter 0.5s;
+        }
+        .map-wrapper:hover { filter: grayscale(0%); }
+        /* Testimonial in contact */
+        .contact-testimonial {
+            background: hsl(var(--secondary));
+            padding: 4rem 3rem;
+            border-radius: 2px;
+            position: relative;
+        }
+        .contact-testimonial::before {
+            content: '"';
+            font-family: var(--font-display);
+            font-size: 8rem;
+            font-style: italic;
+            color: hsl(var(--accent));
+            opacity: 0.15;
+            position: absolute;
+            top: 0.5rem;
+            left: 1.5rem;
+            line-height: 1;
+        }
+        /* Checkmark list */
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: hsl(var(--muted-foreground));
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        .check-list li svg { flex-shrink: 0; color: hsl(var(--accent)); margin-top: 2px; }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased selection:bg-accent selection:text-white">
+
+    <!-- Header -->
+    <header class="site-header fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+            <a href="index.html" class="brand-group">
+                <span class="brand font-display text-2xl font-semibold tracking-tight text-foreground">SILK &amp; STONE</span>
+                <span class="brand-subheading">DESIGN + BUILD</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase transition-colors duration-300 active">Contact</a>
+            </nav>
+            <button class="md:hidden text-foreground bg-transparent border-none cursor-pointer p-2" aria-label="Toggle menu" id="menu-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+        <div id="mobile-nav" class="md:hidden bg-background border-b border-border hidden animate-fade-in">
+            <div class="flex flex-col px-6 py-6 gap-6">
+                <a href="index.html"     class="nav-link font-body text-sm tracking-widest uppercase">Home</a>
+                <a href="about.html"     class="nav-link font-body text-sm tracking-widest uppercase">About</a>
+                <a href="portfolio.html" class="nav-link font-body text-sm tracking-widest uppercase">Portfolio</a>
+                <a href="services.html"  class="nav-link font-body text-sm tracking-widest uppercase">Services</a>
+                <a href="contact.html"   class="nav-link font-body text-sm tracking-widest uppercase active">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- ═══════════ HERO ═══════════ -->
+        <div class="contact-hero">
+            <div class="contact-hero-inner">
+                <div>
+                    <p class="font-body text-xs tracking-widest uppercase mb-4" style="color:hsla(var(--primary-foreground)/0.5);">Get in Touch</p>
+                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-medium leading-tight mb-6" style="color:hsl(var(--primary-foreground));">
+                        Let's begin your<br><em class="font-normal italic">transformation</em>
+                    </h1>
+                    <p class="font-body leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65); font-size:1rem; max-width:420px;">
+                        We'd love to hear about your project. Every great space begins with a conversation — and we give every conversation our full attention.
+                    </p>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr; gap:1rem;">
+                    <div style="display:flex; align-items:center; gap:1rem; padding:1.5rem; background:hsla(var(--primary-foreground)/0.06); border:1px solid hsla(var(--primary-foreground)/0.12); border-radius:2px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" style="color:hsl(var(--accent)); flex-shrink:0;" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.77 9.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <div>
+                            <p class="font-body text-xs tracking-widest uppercase" style="color:hsla(var(--primary-foreground)/0.45);">Phone</p>
+                            <a href="tel:+254769260012" class="font-body text-sm" style="color:hsl(var(--primary-foreground));">+254 769 260 012</a>
+                        </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:1rem; padding:1.5rem; background:hsla(var(--primary-foreground)/0.06); border:1px solid hsla(var(--primary-foreground)/0.12); border-radius:2px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" style="color:hsl(var(--accent)); flex-shrink:0;" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <div>
+                            <p class="font-body text-xs tracking-widest uppercase" style="color:hsla(var(--primary-foreground)/0.45);">Email</p>
+                            <a href="mailto:hello@silkstone.co.ke" class="font-body text-sm" style="color:hsl(var(--primary-foreground));">hello@silkstone.co.ke</a>
+                        </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:1rem; padding:1.5rem; background:hsla(var(--primary-foreground)/0.06); border:1px solid hsla(var(--primary-foreground)/0.12); border-radius:2px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" style="color:hsl(var(--accent)); flex-shrink:0;" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div>
+                            <p class="font-body text-xs tracking-widest uppercase" style="color:hsla(var(--primary-foreground)/0.45);">Studio</p>
+                            <p class="font-body text-sm" style="color:hsl(var(--primary-foreground));">Thindigua, Kiambu — Nairobi, Kenya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ HOW IT WORKS ═══════════ -->
+        <div class="steps-strip">
+            <div class="step-item reveal-on-scroll">
+                <span class="step-number">01</span>
+                <div>
+                    <h4 class="font-display text-lg font-medium text-foreground mb-2">Send Your Enquiry</h4>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">Fill in the form below with details about your space, vision, and timeline. The more detail you share, the better we can prepare for our first conversation.</p>
+                </div>
+            </div>
+            <div class="step-item reveal-on-scroll">
+                <span class="step-number">02</span>
+                <div>
+                    <h4 class="font-display text-lg font-medium text-foreground mb-2">Discovery Call</h4>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">We'll respond within 24 hours to schedule a complimentary 30-minute discovery call — a relaxed, no-obligation conversation about your project and how we might work together.</p>
+                </div>
+            </div>
+            <div class="step-item reveal-on-scroll">
+                <span class="step-number">03</span>
+                <div>
+                    <h4 class="font-display text-lg font-medium text-foreground mb-2">Site Visit &amp; Proposal</h4>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">If we're a good fit, we'll arrange an in-person site visit to walk through your space, understand your vision fully, and provide a tailored design proposal within 5 working days.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ FORM + INFO ═══════════ -->
+        <section class="section-padding max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+                <!-- Left: Form -->
+                <div class="bg-card p-8 md:p-12 border border-border rounded-sm shadow-sm reveal-on-scroll">
+                    <div id="form-feedback" class="hidden text-center py-8">
+                        <div style="display:inline-flex; align-items:center; justify-content:center; width:4rem; height:4rem; border-radius:50%; background:hsla(var(--accent)/0.1); color:hsl(var(--accent)); margin-bottom:1.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-3">Thank you for reaching out</h3>
+                        <p class="font-body text-muted-foreground text-sm leading-relaxed max-w-md mx-auto">We've received your message and will be in touch within 24 hours to schedule your complimentary consultation.</p>
+                    </div>
+
+                    <form id="consultation-form" class="space-y-6" novalidate>
+                        <div>
+                            <h3 class="font-display text-2xl font-medium text-foreground mb-2">Book a Consultation</h3>
+                            <p class="font-body text-sm text-muted-foreground">All enquiries receive a personal response within 24 hours.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">First Name *</label>
+                                <input type="text" name="firstname" required placeholder="Jane" class="input-luxury">
+                            </div>
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Last Name *</label>
+                                <input type="text" name="lastname" required placeholder="Doe" class="input-luxury">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Email Address *</label>
+                                <input type="email" name="email" required placeholder="jane@example.com" class="input-luxury">
+                            </div>
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Phone Number</label>
+                                <input type="tel" name="phone" placeholder="+254 700 000 000" class="input-luxury">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Service of Interest *</label>
+                                <select name="service" required class="input-luxury">
+                                    <option value="">Select a service</option>
+                                    <option value="interior-design">Full Interior Design</option>
+                                    <option value="space-planning">Space Planning &amp; Layout</option>
+                                    <option value="renovation">Renovation &amp; Remodeling</option>
+                                    <option value="furniture">Furniture &amp; Object Selection</option>
+                                    <option value="custom">Custom Millwork &amp; Joinery</option>
+                                    <option value="consultation">Design Consultation (Single Room)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Project Type</label>
+                                <select name="type" class="input-luxury">
+                                    <option value="">Select project type</option>
+                                    <option value="residential">Residential</option>
+                                    <option value="commercial">Commercial</option>
+                                    <option value="retail">Retail &amp; Hospitality</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Approximate Budget Range</label>
+                                <select name="budget" class="input-luxury">
+                                    <option value="">Prefer not to say</option>
+                                    <option value="under-2m">Under KES 2M</option>
+                                    <option value="2-5m">KES 2M – 5M</option>
+                                    <option value="5-10m">KES 5M – 10M</option>
+                                    <option value="10-20m">KES 10M – 20M</option>
+                                    <option value="20m+">KES 20M+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Ideal Start Date</label>
+                                <select name="timeline" class="input-luxury">
+                                    <option value="">Flexible</option>
+                                    <option value="immediate">Immediately</option>
+                                    <option value="1-3m">1–3 months</option>
+                                    <option value="3-6m">3–6 months</option>
+                                    <option value="6m+">6+ months</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">Tell us about your project *</label>
+                            <textarea name="message" rows="5" required placeholder="Describe your space, what you love and don't love about it, your vision and must-haves, and any other context that would help us prepare for our first conversation..." class="input-luxury resize-none"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-2">How did you hear about us?</label>
+                            <select name="source" class="input-luxury">
+                                <option value="">Select</option>
+                                <option value="google">Google Search</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="referral">Client Referral</option>
+                                <option value="press">Press / Editorial</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div style="display:flex; align-items:flex-start; gap:0.75rem; padding:1.25rem; background:hsl(var(--secondary)); border-radius:2px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:hsl(var(--accent)); flex-shrink:0; margin-top:2px;" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                            <p class="font-body text-xs text-muted-foreground leading-relaxed">Your information is kept strictly confidential and will only be used to respond to your enquiry. We never share your details with third parties.</p>
+                        </div>
+
+                        <button type="submit" class="btn-consultation w-full justify-center" style="display:flex; align-items:center;">
+                            SEND MESSAGE
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:0.75rem;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right: Info -->
+                <div class="space-y-10 reveal-on-scroll">
+
+                    <!-- Contact details -->
+                    <div>
+                        <h3 class="font-display text-2xl font-medium text-foreground mb-6">Studio Contact</h3>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.77 9.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                </div>
+                                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Phone</p>
+                                <a href="tel:+254769260012" class="font-body text-sm text-foreground hover:text-accent transition-colors">+254 769 260 012</a>
+                                <br><a href="tel:+254769260012" class="font-body text-sm text-muted-foreground hover:text-accent transition-colors">0769 260 012</a>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </div>
+                                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Email</p>
+                                <a href="mailto:hello@silkstone.co.ke" class="font-body text-sm text-foreground hover:text-accent transition-colors">hello@silkstone.co.ke</a>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </div>
+                                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Studio Address</p>
+                                <p class="font-body text-sm text-foreground">Thindigua, Kiambu<br>Nairobi, Kenya</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                                </div>
+                                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">WhatsApp</p>
+                                <a href="https://wa.me/254769260012" target="_blank" class="font-body text-sm text-foreground hover:text-accent transition-colors">Chat with us now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Studio Hours -->
+                    <div>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-4">Studio Hours</h3>
+                        <div style="border:1px solid hsl(var(--border)); border-radius:2px; overflow:hidden;">
+                            <div style="display:flex; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid hsl(var(--border)); background:hsl(var(--card));">
+                                <span class="font-body text-sm text-foreground">Monday – Friday</span>
+                                <span class="font-body text-sm font-medium text-foreground">9:00 AM – 6:00 PM</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid hsl(var(--border));">
+                                <span class="font-body text-sm text-foreground">Saturday</span>
+                                <span class="font-body text-sm text-muted-foreground">By appointment only</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding:1rem 1.5rem;">
+                                <span class="font-body text-sm text-foreground">Sunday</span>
+                                <span class="font-body text-sm text-muted-foreground">Closed</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-muted-foreground mt-3">
+                            Studio visits are by appointment. We typically respond to enquiries within 24 business hours.
+                        </p>
+                    </div>
+
+                    <!-- Social -->
+                    <div>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-4">Follow Our Work</h3>
+                        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+                            <a href="#" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                                @silkandstone — Instagram
+                            </a>
+                            <a href="#" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                                SILK &amp; STONE — LinkedIn
+                            </a>
+                            <a href="https://wa.me/254769260012" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                                WhatsApp Us Directly
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial snippet -->
+                    <div class="contact-testimonial">
+                        <p class="font-display text-lg italic text-foreground leading-relaxed mb-4" style="position:relative; z-index:1;">
+                            "From the first call to the final reveal, the experience was flawless. We trusted them completely — and they delivered something beyond what we imagined."
+                        </p>
+                        <p class="font-body text-sm font-medium text-foreground">Sarah &amp; James Chen</p>
+                        <p class="font-body text-xs text-muted-foreground mt-1">Muthaiga Residence · Nairobi</p>
+                    </div>
+
+                    <!-- Why work with us -->
+                    <div>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-6">Why work with SILK &amp; STONE</h3>
+                        <ul class="check-list" style="list-style:none; padding:0; margin:0;">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Complimentary 30-minute discovery consultation — no commitment required
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Every project personally led by a senior designer — never delegated
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Full transparency on timelines and costs from the very first meeting
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Established in 2022 with 25+ completed bespoke commissions
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Trusted network of vetted contractors, artisans, and suppliers
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Recognised by Architectural Digest, Elle Décor, and Design Indaba
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Embedded Map -->
+                    <div>
+                        <h3 class="font-display text-xl font-medium text-foreground mb-4">Find Our Studio</h3>
+                        <div class="map-wrapper shadow-sm">
+                            <iframe
+                                src="https://maps.google.com/maps?q=Thindigua,+Kiambu,+Kenya&z=14&output=embed"
+                                width="100%"
+                                height="300"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="SILK &amp; STONE Studio Location — Thindigua, Kiambu, Nairobi">
+                            </iframe>
+                        </div>
+                        <p class="font-body text-xs text-muted-foreground mt-3">Studio visits are by appointment. Please contact us before visiting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ WHY US GRID ═══════════ -->
+        <section class="section-padding">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+                <p class="font-body text-xs tracking-widest uppercase text-muted-foreground mb-4 text-center">What Sets Us Apart</p>
+                <h2 class="font-display text-3xl md:text-4xl font-medium text-foreground text-center">The SILK &amp; STONE difference</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-item reveal-on-scroll">
+                    <div style="width:40px; height:2px; background:hsl(var(--accent)); margin-bottom:1.5rem;"></div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Personal Attention</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">Every project is personally led by Simon Mwakodi and our senior design-build leads — who are with you from the first conversation to the final reveal. No junior handoffs.</p>
+                </div>
+                <div class="why-item reveal-on-scroll">
+                    <div style="width:40px; height:2px; background:hsl(var(--accent)); margin-bottom:1.5rem;"></div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Material Excellence</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">Since our establishment in 2022, we have built trusted relationships with exceptional material suppliers, stone carvers, and master craftspeople across Kenya and Europe. We give you access to bespoke quality that simply isn't available off the shelf.</p>
+                </div>
+                <div class="why-item reveal-on-scroll">
+                    <div style="width:40px; height:2px; background:hsl(var(--accent)); margin-bottom:1.5rem;"></div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">End-to-End Management</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">We handle every detail of your project — from ordering and logistics to contractor coordination and final installation — so you can enjoy the process rather than manage it.</p>
+                </div>
+                <div class="why-item reveal-on-scroll">
+                    <div style="width:40px; height:2px; background:hsl(var(--accent)); margin-bottom:1.5rem;"></div>
+                    <h3 class="font-display text-xl font-medium text-foreground mb-3">Transparent Partnership</h3>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">We believe in complete transparency on costs, timelines, and every decision point. Our shared project management system keeps you informed and in control at every stage.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-primary-foreground py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="brand-group">
+                        <span class="brand font-display text-2xl font-semibold tracking-tight text-primary-foreground">SILK &amp; STONE</span>
+                        <span class="brand-subheading-footer">DESIGN + BUILD</span>
+                    </a>
+                    <p class="font-body text-sm mt-6 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Boutique interior design studio crafting timeless spaces rooted in warmth, materiality, and the art of living well.</p>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Explore</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="index.html"     class="hover:text-primary-foreground transition-colors">Home</a></li>
+                        <li><a href="about.html"     class="hover:text-primary-foreground transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-primary-foreground transition-colors">Portfolio</a></li>
+                        <li><a href="services.html"  class="hover:text-primary-foreground transition-colors">Services</a></li>
+                        <li><a href="contact.html"   class="hover:text-primary-foreground transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Services</h4>
+                    <ul class="space-y-3 font-body text-sm" style="color:hsla(var(--primary-foreground)/0.65);">
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Interior Design</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Space Planning</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Renovation &amp; Remodeling</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Furniture Selection</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Custom Millwork</a></li>
+                        <li><a href="services.html" class="hover:text-primary-foreground transition-colors">Design Consultation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-body text-xs tracking-widest uppercase mb-6" style="color:hsla(var(--primary-foreground)/0.45);">Newsletter</h4>
+                    <p class="font-body text-sm mb-4 leading-relaxed" style="color:hsla(var(--primary-foreground)/0.65);">Subscribe to receive our seasonal curation on architecture, materiality, and interiors.</p>
+                    <form id="newsletter-form" class="space-y-3">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 text-sm rounded-sm" style="background:hsla(var(--primary-foreground)/0.08); color:hsl(var(--primary-foreground)); border:1px solid hsla(var(--primary-foreground)/0.15); outline:none;">
+                        <button type="submit" class="w-full bg-accent text-accent-foreground px-6 py-3 font-body text-xs tracking-widest uppercase hover:opacity-90 transition-opacity rounded-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 font-body" style="border-top:1px solid hsla(var(--primary-foreground)/0.1); font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:hsla(var(--primary-foreground)/0.35);">
+                <p>© 2026 SILK &amp; STONE Interior Design. All rights reserved.</p>
+                <div style="display:flex; align-items:center; gap:0.5rem; color:hsla(var(--primary-foreground)/0.3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Thindigua, Kiambu / Nairobi, Kenya
+                </div>
+                <div class="flex gap-8">
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Privacy Policy</a>
+                    <a href="index.html" class="hover:text-primary-foreground-70 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/254769260012" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    </a>
+
+    <div id="toast-notice" class="toast-notice">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
+        <span class="toast-text"></span>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

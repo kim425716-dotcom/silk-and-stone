@@ -1,3 +1,10 @@
+param(
+    [string]$FtpHost,
+    [string]$FtpUsername,
+    [string]$FtpPassword,
+    [string]$DeployPath = "/public_html/silk-and-stone/"
+)
+
 # ==============================================================================
 # Silk & Stone — Set Up GitHub Secrets for cPanel Deployment
 # ==============================================================================
@@ -25,20 +32,34 @@ if ($LASTEXITCODE -ne 0) {
     gh auth login --web --git-protocol https
 }
 
-Write-Host ""
-Write-Host "Enter your cPanel FTP connection details:" -ForegroundColor Yellow
-Write-Host ""
+# Prompt interactively if parameters not provided
+if ([string]::IsNullOrWhiteSpace($FtpHost)) {
+    Write-Host ""
+    Write-Host "Enter your cPanel FTP connection details:" -ForegroundColor Yellow
+    Write-Host ""
+    $FtpHost = Read-Host "FTP Host (default: logictech.co.ke)"
+    if ([string]::IsNullOrWhiteSpace($FtpHost)) { $FtpHost = "logictech.co.ke" }
+}
 
-$ftpHost = Read-Host "FTP Host (default: logictech.co.ke)"
-if ([string]::IsNullOrWhiteSpace($ftpHost)) { $ftpHost = "logictech.co.ke" }
+if ([string]::IsNullOrWhiteSpace($FtpUsername)) {
+    $FtpUsername = Read-Host "cPanel FTP Username"
+}
 
-$ftpUser = Read-Host "cPanel FTP Username"
-$ftpPass = Read-Host "cPanel FTP Password" -AsSecureString
-$bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ftpPass)
-$plainPass = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bstr)
+if ([string]::IsNullOrWhiteSpace($FtpPassword)) {
+    $securePass = Read-Host "cPanel FTP Password" -AsSecureString
+    $bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($securePass)
+    $FtpPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bstr)
+}
 
-$deployPath = Read-Host "Remote Deploy Folder on cPanel (default: /public_html/silk-and-stone/)"
-if ([string]::IsNullOrWhiteSpace($deployPath)) { $deployPath = "/public_html/silk-and-stone/" }
+if ([string]::IsNullOrWhiteSpace($DeployPath)) {
+    $DeployPath = Read-Host "Remote Deploy Folder on cPanel (default: /public_html/silk-and-stone/)"
+    if ([string]::IsNullOrWhiteSpace($DeployPath)) { $DeployPath = "/public_html/silk-and-stone/" }
+}
+
+# Ensure trailing slash
+if (-not $DeployPath.EndsWith("/")) {
+    $DeployPath = $DeployPath + "/"
+}
 
 # Set secrets on GitHub repo
 function Set-Secret($name, $value) {
@@ -55,17 +76,19 @@ function Set-Secret($name, $value) {
 Write-Host ""
 Write-Host "Saving deployment secrets to GitHub ($repo)..." -ForegroundColor Cyan
 
-Set-Secret "FTP_HOST" $ftpHost
-Set-Secret "FTP_USERNAME" $ftpUser
-Set-Secret "FTP_PASSWORD" $plainPass
-Set-Secret "DEPLOY_PATH_PROD" $deployPath
+Set-Secret "FTP_HOST" $FtpHost
+Set-Secret "FTP_USERNAME" $FtpUsername
+Set-Secret "FTP_PASSWORD" $FtpPassword
+Set-Secret "DEPLOY_PATH_PROD" $DeployPath
 
 Write-Host ""
 Write-Host "==========================================================" -ForegroundColor Green
-Write-Host "  Setup Complete!                                         " -ForegroundColor Green
+Write-Host "  Setup Complete! Secrets configured on GitHub.           " -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Green
-Write-Host "Now, whenever you push changes to GitHub (git push origin main),"
-Write-Host "GitHub Actions will automatically deploy to your cPanel folder:"
-Write-Host "  Target: $deployPath" -ForegroundColor White
-Write-Host "  Monitor runs at: https://github.com/$repo/actions" -ForegroundColor White
+Write-Host "Repo: https://github.com/$repo" -ForegroundColor White
+Write-Host "Target cPanel folder: $DeployPath" -ForegroundColor White
+Write-Host ""
+Write-Host "To trigger your first deployment right now, run:" -ForegroundColor Cyan
+Write-Host "  gh workflow run deploy.yml --repo $repo" -ForegroundColor Yellow
+Write-Host "Monitor runs at: https://github.com/$repo/actions" -ForegroundColor White
 Write-Host ""

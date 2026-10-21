@@ -1,0 +1,73 @@
+# ==============================================================================
+# Silk & Stone — Auto-Deploy to cPanel via FTP
+# ==============================================================================
+#
+# Triggers:
+#   • Push to `main` branch
+#   • Manual trigger via GitHub Actions (workflow_dispatch)
+#
+# Required GitHub Secrets (Settings → Secrets and variables → Actions):
+#   FTP_HOST              — FTP hostname (e.g. logictech.co.ke or your cPanel server IP)
+#   FTP_USERNAME          — cPanel FTP username
+#   FTP_PASSWORD          — cPanel FTP password
+#   DEPLOY_PATH_PROD      — Remote folder path (e.g. /public_html/silk-and-stone/ or /silk-and-stone/)
+# ==============================================================================
+
+name: 🚀 Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to cPanel
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Prepare distribution files
+        run: |
+          mkdir -p dist
+          # Copy website files directly to dist root so they are served at the root of the domain
+          cp -r silk-stone-interiors/* dist/
+          # Copy .htaccess
+          if [ -f silk-stone-interiors/.htaccess ]; then
+            cp silk-stone-interiors/.htaccess dist/.htaccess
+          fi
+          # Remove dev & unnecessary files
+          rm -f dist/*DESKTOP* dist/serve.ps1 dist/*.jsx dist/TODO.md
+
+      - name: 🚀 Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
+          server-dir: ${{ secrets.DEPLOY_PATH_PROD || '/public_html/silk-and-stone/' }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+
+      - name: 📊 Deployment summary
+        if: success()
+        run: |
+          echo "### 🚀 Silk & Stone Deployed to cPanel!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Detail | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch** | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Target Folder** | \`${{ secrets.DEPLOY_PATH_PROD || '/public_html/silk-and-stone/' }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Deployed by** | @${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY

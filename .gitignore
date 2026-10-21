@@ -30,3 +30,8 @@ desktop.ini
 # Tool caches
 .zencoder/
 .zenflow/
+
+# Deploy archives
+*.zip
+*.tar.gz
+dist/

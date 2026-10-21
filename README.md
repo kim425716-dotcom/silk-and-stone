@@ -36,5 +36,39 @@ silk and stone/
    ```
 2. Navigate to `http://localhost:8000` to explore the experience.
 
+## cPanel Deployment (Hosting as Second Website)
+
+Silk & Stone can be hosted on your cPanel account as an **Addon Domain**, **Subdomain**, or **Subfolder** alongside your primary website.
+
+### Option 1: Direct Upload via cPanel File Manager (Fastest)
+
+1. Open your cPanel dashboard and go to **Domains** (or **Addon Domains** / **Subdomains**):
+   - Create your second domain (e.g. `silkandstone.ke` or subdomain `interiors.logictech.co.ke`).
+   - Note the **Document Root** directory (e.g., `/public_html/silk-and-stone/`).
+2. Open **cPanel > File Manager** and navigate into that Document Root directory.
+3. Click **Upload** and select the bundle generated in this workspace:
+   `silk-and-stone-cpanel.zip`
+4. Right-click the uploaded zip in File Manager and select **Extract**.
+5. Your website is immediately live with optimized `.htaccess` caching, compression, and clean URLs!
+
+*(To rebuild the zip bundle at any time, run: `powershell -ExecutionPolicy Bypass -File .\scripts\build-cpanel-bundle.ps1`)*
+
+---
+
+### Option 2: Automated Continuous Deployment via GitHub Actions
+
+Every time you commit and push to `main`, GitHub Actions can automatically upload changes to your cPanel host via FTP:
+
+1. Run the interactive setup script in PowerShell:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File .\scripts\setup-cpanel-deploy.ps1
+   ```
+2. Enter your cPanel FTP credentials and target folder (`/public_html/silk-and-stone/`).
+3. Commit and push:
+   ```bash
+   git push origin main
+   ```
+4. GitHub Actions will automatically synchronize your files to cPanel!
+
 ## License
 MIT License
